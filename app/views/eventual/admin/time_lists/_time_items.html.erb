@@ -5,11 +5,11 @@
       <td><%= time_item.start_at.to_fs(:time) %></td>
       <td><%= time_item.finish_at.to_fs(:time) %></td>
       <td>
-        <%= button_to edit_admin_time_list_time_item_path(time_list, time_item), aria: { label: t('.edit.title') }, class: 'button is-small is-rounded is-light' do %>
+        <%= button_to edit_admin_time_list_time_item_path(time_list, time_item), aria: { label: t('.edit.title') }, class: 'button is-small is-borderless' do %>
           <i class="fa-solid fa-pencil"></i>
         <% end %>
-        <%= button_to admin_time_list_time_item_path(time_list, time_item), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-          <i class="fa-solid fa-trash"></i>
+        <%= button_to admin_time_list_time_item_path(time_list, time_item), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
+          <%= svg_tag 'trash', class: 'icon' %>
         <% end %>
       </td>
     </tr>

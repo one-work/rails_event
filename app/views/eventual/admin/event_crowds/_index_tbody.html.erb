@@ -4,13 +4,13 @@
     <%= render partial: 'crowd_member', locals: { event_crowd: event_crowd } %>
   </td>
   <td>
-    <%= link_to edit_admin_event_event_crowd_path(@event, event_crowd, item: 'teacher'), aria: { label: '设置老师' }, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to edit_admin_event_event_crowd_path(@event, event_crowd, item: 'teacher'), aria: { label: '设置老师' }, class: 'button is-small is-borderless' do %>
       <i class="green male icon"></i>
     <% end %>
     <%= event_crowd.teacher&.name %>
   </td>
   <td>
-    <%= link_to edit_admin_event_event_crowd_path(@event, event_crowd, item: 'room'), aria: { label: '设置教室' }, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to edit_admin_event_event_crowd_path(@event, event_crowd, item: 'room'), aria: { label: '设置教室' }, class: 'button is-small is-borderless' do %>
       <i class="fa-regular fa-building"></i>
     <% end %>
     <%= event_crowd.room&.name %>

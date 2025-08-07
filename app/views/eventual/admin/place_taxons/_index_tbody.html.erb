@@ -4,14 +4,14 @@
   <td><%= place_taxon.places_count %></td>
   <td>
     <%= link_to 'taxon', admin_taxon_items_path('PlaceTaxon', place_taxon.id) %>
-    <%= link_to admin_place_taxon_path(place_taxon), aria: { label: t('.show.title') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fa-solid fa-circle-info"></i>
+    <%= link_to admin_place_taxon_path(place_taxon), aria: { label: t('.show.title') }, class: 'button is-small is-borderless' do %>
+      <%= svg_tag 'circle-info', class: 'icon text-info' %>
     <% end %>
-    <%= link_to edit_admin_place_taxon_path(place_taxon), aria: { label: t('.edit.title') }, class: 'button is-small is-rounded is-light' do %>
+    <%= link_to edit_admin_place_taxon_path(place_taxon), aria: { label: t('.edit.title') }, class: 'button is-small is-borderless' do %>
       <i class="fa-solid fa-pencil"></i>
     <% end %>
-    <%= link_to admin_place_taxon_path(place_taxon), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-rounded is-light' do %>
-      <i class="fa-solid fa-trash"></i>
+    <%= link_to admin_place_taxon_path(place_taxon), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
+      <%= svg_tag 'trash', class: 'icon' %>
     <% end %>
   </td>
 </tr>

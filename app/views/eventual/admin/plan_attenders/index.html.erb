@@ -5,7 +5,7 @@
       <% if @plan_item.wechat_response %>
         <%= image_tag @plan_item.qrcode_url, class: 'ui small image' %>
       <% else %>
-        <%= link_to qrcode_plan_item_path(@plan_item.plan_type, @plan_item.plan_id, @plan_item), method: :patch, aria: { label: t('.qrcode') }, class: 'button is-small is-rounded is-light' do %>
+        <%= link_to qrcode_plan_item_path(@plan_item.plan_type, @plan_item.plan_id, @plan_item), method: :patch, aria: { label: t('.qrcode') }, class: 'button is-small is-borderless' do %>
           <i class="fa-solid fa-qrcode"></i>
         <% end %>
       <% end %>
