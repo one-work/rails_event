@@ -9,7 +9,7 @@
           <i class="fa-solid fa-pencil"></i>
         <% end %>
         <%= button_to admin_time_list_time_item_path(time_list, time_item), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
-          <%= svg_tag 'trash', class: 'icon' %>
+          <%= svg_tag 'trash' %>
         <% end %>
       </td>
     </tr>

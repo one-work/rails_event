@@ -32,7 +32,7 @@
           <i class="fa-solid fa-pencil"></i>
         <% end %>
         <%= link_to time_booking_path(params[:booked_type], params[:booked_id], time_booking), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
-          <%= svg_tag 'trash', class: 'icon' %>
+          <%= svg_tag 'trash' %>
         <% end %>
       </td>
     </tr>

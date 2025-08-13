@@ -23,7 +23,7 @@
           <i class="fa-solid fa-pencil"></i>
         <% end %>
         <%= link_to admin_crowd_member_path(crowd_member), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
-          <%= svg_tag 'trash', class: 'icon' %>
+          <%= svg_tag 'trash' %>
         <% end %>
       </td>
     </tr>
