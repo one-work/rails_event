@@ -11,7 +11,7 @@
       <th><%= Eventual::Booking.human_attribute_name(:place_id) %></th>
       <th>
         <%= link_to new_time_booking_path(params[:booked_type], params[:booked_id]), class: 'button is-link is-small' do %>
-          <i class="fa-solid fa-plus"></i><%= t('.new.title') %>
+          <%= svg_tag 'plus' %><%= t('.new.title') %>
         <% end %>
       </th>
     </tr>

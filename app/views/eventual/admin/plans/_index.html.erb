@@ -20,7 +20,7 @@
   <tr id="time_plan_new">
     <td colspan="6">
       <%= link_to new_time_plan_path(@plan.plan_type, @plan.plan_id), aria: { label: t('.new.title') }, class: 'button is-small is-borderless' do %>
-        <i class="fa-solid fa-plus"></i>
+        <%= svg_tag 'plus' %>
       <% end %>
     </td>
   </tr>

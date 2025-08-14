@@ -7,7 +7,7 @@
         <%= link_to taxon.name, filter_params(event_taxon_id: taxon.id), class: active_helper(event_taxon_id: taxon.id, active: 'button is-info', item: 'button is-light') %>
       <% end %>
       <%= link_to new_admin_event_taxon_path, aria: { label: t('event.admin.event_taxons.new.title') }, class: 'button is-rounded is-light' do %>
-        <i class="fa-solid fa-plus"></i>
+        <%= svg_tag 'plus' %>
       <% end %>
     </td>
   </tr>

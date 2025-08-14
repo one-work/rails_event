@@ -19,7 +19,7 @@
     <tr>
       <td colspan="3">
         <%= link_to({ action: 'new' }, class: 'button') do %>
-          <i class="fa-solid fa-plus"></i>
+          <%= svg_tag 'plus' %>
           <%= t('.new.title') %>
         <% end %>
       </td>
