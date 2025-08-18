@@ -57,7 +57,7 @@ module Eventual
     def xx
       dt = params[:index].to_s
       if dt
-        @plan.toggle(dt, params[:time_item_id].to_i)
+        @plan.toggle(dt, params[:time_item_id])
       end
     end
 
