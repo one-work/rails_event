@@ -8,7 +8,7 @@
       <%= svg_tag 'circle-info', class: 'icon text-info' %>
     <% end %>
     <%= link_to edit_admin_place_taxon_path(place_taxon), aria: { label: t('.edit.title') }, class: 'button is-small is-borderless' do %>
-      <i class="fa-solid fa-pencil"></i>
+      <%= svg_tag 'pencil' %>
     <% end %>
     <%= link_to admin_place_taxon_path(place_taxon), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
       <%= svg_tag 'trash' %>
