@@ -7,7 +7,7 @@
       <th class="three wide">
         <%= Plan.human_attribute_name(:time_list_id) %>
         <%= link_to admin_time_lists_path, aria: { label: '设置' }, target: '_blank' do %>
-          <i class="fa-solid fa-cog"></i>
+          <%= svg_tag 'gear' %>
         <% end %>
       </th>
       <th></th>

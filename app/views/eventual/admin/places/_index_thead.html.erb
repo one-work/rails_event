@@ -2,7 +2,7 @@
 <th>
   <%= Eventual::Place.human_attribute_name(:place_taxon_id) %>
   <%= link_to({ controller: 'place_taxons' }, aria: { label: '分类设置' }) do %>
-    <i class="fa-solid fa-cog"></i>
+    <%= svg_tag 'gear' %>
   <% end %>
 </th>
 <th><%= Eventual::Place.human_attribute_name(:color) %></th>

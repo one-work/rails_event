@@ -7,6 +7,6 @@
 <div class="field is-horizontal">
   <%= f.collection_members_select :author_id, :id, :name, wrap: { all: false } %>
   <%= link_to admin_department_grants_path('EventItem', 'author_id', return_to: request.url), aria: { label: '老师部门设置' }, target: '_blank' do %>
-    <i class="fa-solid fa-cog"></i>
+    <%= svg_tag 'gear' %>
   <% end %>
 </div>

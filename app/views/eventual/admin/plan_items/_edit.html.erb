@@ -13,7 +13,7 @@
         <div class="inline fields">
         <%= f.collection_select :place_id, @places, :id, :name, { include_blank: true, can: { wrap_all: false } } %>
         <%= link_to admin_organ_places_path(default_params), aria: { label: '教室设置' }, target: '_blank' do %>
-          <i class="fa-solid fa-cog"></i>
+          <%= svg_tag 'gear' %>
         <% end %>
         </div>
       <% end %>
