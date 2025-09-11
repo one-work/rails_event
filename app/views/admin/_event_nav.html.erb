@@ -7,7 +7,7 @@
     <%= link_to t('eventual.admin.plans.index.title'), { controller: 'eventual/admin/plans' }, class: active_helper(controllers: ['plans'], active: 'is-active') -%>
   <% end %>
   <a class="menu-label" data-action="menu#toggle">
-    <i class="fa-solid fa-fw fa-users-line"></i>
+    <%= svg_tag 'users-line' %>
     <span><%= t('eventual.admin.title') %></span>
     <i class="fa-solid dropdown"></i>
   </a>
