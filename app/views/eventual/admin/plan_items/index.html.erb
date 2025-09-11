@@ -52,7 +52,7 @@
           <%= image_tag event_plan.wechat_response.qrcode_file, class: 'ui small image' if event_plan.wechat_response.qrcode_file.attached? %>
         <% else %>
           <%= link_to qrcode_admin_event_crowd_plan_path(@event_crowd, event_plan), method: :patch, aria: { label: t('.qrcode') }, class: 'button is-small is-borderless' do %>
-            <i class="fa-solid fa-qrcode"></i>
+            <%= svg_tag 'qrcode' %>
           <% end %>
         <% end %>
         <%= link_to admin_event_plan_event_item_members_path(event_plan), aria: { label: '点名' }, class: 'button is-small is-borderless' do %>
