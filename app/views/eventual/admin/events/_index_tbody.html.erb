@@ -14,7 +14,7 @@
 <td>
   <%= link_to t('model.admin.event_participants.index.title'), { controller: 'event_participants', event_id: model.id }, class: 'button is-small is-borderless' %>
   <%= link_to({ controller: 'event_items', event_id: model.id }, aria: { label: '课程内容' }, class: 'button is-small is-borderless') do %>
-    <i class="fa-solid fa-list"></i>
+    <%= svg_tag 'list' %>
   <% end %>
 </td>
 <td>
