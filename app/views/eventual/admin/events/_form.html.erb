@@ -7,4 +7,4 @@
 </div>
 <%= f.text_field :name %>
 <%= f.text_area :description %>
-<%= f.file_field :logo %>
+<%= render 'com/attachments/list_field', target: f.object.logo, f: f %>
