@@ -1,6 +1,9 @@
 zh:
   eventual:
     title: 预约/事件
+    places:
+      index:
+        title: 就近办公
     my:
       time_plans:
         index:
