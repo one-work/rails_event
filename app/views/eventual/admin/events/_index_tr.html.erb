@@ -1,0 +1,10 @@
+<%=
+  tr_tag(
+    model,
+    {
+      action: url_for(action: 'edit_plan', id: model.id),
+      icon: 'calendar',
+      title: t('.edit_plan.title')
+    }
+  ) { yield }
+%>
