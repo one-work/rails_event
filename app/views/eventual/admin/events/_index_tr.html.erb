@@ -4,7 +4,17 @@
     {
       action: url_for(action: 'edit_plan', id: model.id),
       icon: 'calendar',
-      title: t('.edit_plan.title')
+      title: t('.edit_plan.title'),
+      position: 0
+    },
+    {
+      href: url_for(controller: 'event_participants', event_id: model.id),
+      title: t('.event_participants.index.title')
+    },
+    {
+      href: url_for(controller: 'event_items', event_id: model.id),
+      icon: 'list',
+      title: '课程内容'
     }
   ) { yield }
 %>

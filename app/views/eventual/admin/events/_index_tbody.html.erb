@@ -11,9 +11,4 @@
   <p><%= model.repeat_type_i18n %></p>
   <p><%= model.repeat_days %></p>
 </td>
-<td>
-  <%= link_to t('model.admin.event_participants.index.title'), { controller: 'event_participants', event_id: model.id }, class: 'button is-small is-borderless' %>
-  <%= link_to({ controller: 'event_items', event_id: model.id }, aria: { label: '课程内容' }, class: 'button is-small is-borderless') do %>
-    <%= svg_tag 'list' %>
-  <% end %>
-</td>
+
