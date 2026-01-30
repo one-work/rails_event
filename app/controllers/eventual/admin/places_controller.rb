@@ -14,31 +14,8 @@ module Eventual
       @place.place_taxon = PlaceTaxon.new(default_params)
     end
 
-    def create
-      @place = Place.new(place_params)
-
-      unless @place.save
-        render :new, locals: { model: @place }, status: :unprocessable_entity
-      end
-    end
-
-    def show
-    end
-
     def edit
       @place.place_taxon ||= PlaceTaxon.new(default_params)
-    end
-
-    def update
-      @place.assign_attributes(place_params)
-
-      unless @place.save
-        render :edit, locals: { model: @place }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @place.destroy
     end
 
     private

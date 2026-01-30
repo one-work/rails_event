@@ -1,17 +1,3 @@
-<tr>
-  <td><%= place_taxon.name %></td>
-  <td><%= place_taxon.position %></td>
-  <td><%= place_taxon.places_count %></td>
-  <td>
-    <%= link_to 'taxon', admin_taxon_items_path('PlaceTaxon', place_taxon.id) %>
-    <%= link_to admin_place_taxon_path(place_taxon), aria: { label: t('.show.title') }, class: 'button is-small is-borderless' do %>
-      <%= svg_tag 'eye', class: 'icon text-info' %>
-    <% end %>
-    <%= link_to edit_admin_place_taxon_path(place_taxon), aria: { label: t('.edit.title') }, class: 'button is-small is-borderless' do %>
-      <%= svg_tag 'pencil' %>
-    <% end %>
-    <%= link_to admin_place_taxon_path(place_taxon), method: :delete, aria: { label: t('.destroy.title') }, data: { turbo_confirm: t('.confirm') }, class: 'button is-small is-borderless' do %>
-      <%= svg_tag 'trash' %>
-    <% end %>
-  </td>
-</tr>
+<td><%= place_taxon.name %></td>
+<td><%= place_taxon.position %></td>
+<td><%= place_taxon.places_count %></td>

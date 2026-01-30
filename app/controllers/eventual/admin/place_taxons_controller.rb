@@ -9,36 +9,6 @@ module Eventual
       @place_taxons = PlaceTaxon.default_where(q_params).page(params[:page])
     end
 
-    def new
-      @place_taxon = PlaceTaxon.new
-    end
-
-    def create
-      @place_taxon = PlaceTaxon.new(place_taxon_params)
-
-      unless @place_taxon.save
-        render :new, locals: { model: @place_taxon }, status: :unprocessable_entity
-      end
-    end
-
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @place_taxon.assign_attributes(place_taxon_params)
-
-      unless @place_taxon.save
-        render :edit, locals: { model: @place_taxon }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @place_taxon.destroy
-    end
-
     private
     def set_place_taxon
       @place_taxon = PlaceTaxon.find(params[:id])

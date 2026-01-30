@@ -17,7 +17,6 @@ module Eventual
       accepts_nested_attributes_for :documents_attachments, allow_destroy: true
     end
 
-
     def video_urls
       videos.map(&:service_url)
     end
