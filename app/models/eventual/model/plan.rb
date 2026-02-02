@@ -11,7 +11,7 @@ module Eventual
       attribute :extra, :json
       attribute :ref_ident, :string, index: true
 
-      belongs_to :planned, polymorphic: true
+      belongs_to :planned, polymorphic: true, optional: true
 
       belongs_to :time_item, optional: true
       belongs_to :time_list, optional: true
