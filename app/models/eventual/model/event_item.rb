@@ -7,6 +7,7 @@ module Eventual
 
       belongs_to :event
       belongs_to :author, class_name: 'Member', optional: true
+
       has_many :event_item_members
       has_many :members, through: :event_item_members, source_type: 'Profile'
 
