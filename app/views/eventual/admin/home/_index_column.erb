@@ -14,4 +14,7 @@
   <%= link_to({ controller: 'eventual/admin/plans' }, class: active_helper(controllers: ['plans'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
     <span><%= t('eventual.admin.plans.index.title') %></span>
   <% end %>
+  <%= link_to({ controller: 'eventual/admin/apps' }, class: active_helper(controllers: ['apps'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
+    <span><%= t('eventual.admin.apps.index.title') %></span>
+  <% end %>
 </div>
