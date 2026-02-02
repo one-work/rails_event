@@ -27,7 +27,7 @@ module Eventual
       default_scope -> { order(plan_on: :asc) }
       scope :valid, -> { default_where('plan_on-gte': Date.today) }
 
-      before_validation :sync_from_plan
+      before_validation :sync_from_planned
     end
 
     def attenders
@@ -42,8 +42,8 @@ module Eventual
       time_item.finish_at.change(plan_on.parts)
     end
 
-    def sync_from_plan
-      if plan
+    def sync_from_planned
+      if planned
         self.place_id = plan.place_id
         self.planned = plan.planned
         self.repeat_index = self.plan.repeat_index(plan_on)
