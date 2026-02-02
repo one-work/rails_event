@@ -1,6 +1,10 @@
 module Eventual
   class EventsController < BaseController
 
+    def index
+      @events = Event.page(params[:page])
+    end
+
     def summary
       @events = Event.default_where(default_params)
       x = []
