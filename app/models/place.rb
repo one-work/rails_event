@@ -1,0 +1,1 @@
+Place = Eventual::Place unless defined? Place

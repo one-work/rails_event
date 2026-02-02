@@ -1,0 +1,1 @@
+Plan = Eventual::Plan unless defined? Plan
