@@ -1,15 +1,16 @@
 module Eventual
-  module Model::Seat
+  module Model::Hall
     extend ActiveSupport::Concern
 
     included do
       attribute :name, :string
+      attribute :rows, :integer
+      attribute :cols, :integer
       attribute :min_members, :integer, default: 1
       attribute :max_members, :integer
 
       belongs_to :place, counter_cache: true
-
-      has_many :plans
+      has_many :seats
 
       validates :name, presence: true
     end

@@ -19,6 +19,7 @@ module Eventual
       belongs_to :taxon, class_name: 'PlaceTaxon', optional: true, foreign_key: :place_taxon_id
 
       has_many :plans
+      has_many :halls
       has_many :seats, dependent: :delete_all
 
       validates :name, presence: true
