@@ -7,6 +7,7 @@ module Eventual
       attribute :name, :string
       attribute :appid, :string, index: true
       attribute :secret, :string
+      attribute :base_url, :string
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
     end
