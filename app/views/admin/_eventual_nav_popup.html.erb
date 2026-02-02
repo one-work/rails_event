@@ -1,0 +1,13 @@
+<div data-controller="menu-popup" class="dropdown pop-right">
+  <div class="dropdown-trigger">
+    <%= svg_tag 'users-line' %>
+    <div><%= t('eventual.admin.title') %></div>
+  </div>
+  <div data-menu-popup-target="aim" class="dropdown-menu">
+    <div class="dropdown-content">
+      <div class="section" style="width: 50vw">
+        <%= render 'eventual/admin/home/index_column' %>
+      </div>
+    </div>
+  </div>
+</div>

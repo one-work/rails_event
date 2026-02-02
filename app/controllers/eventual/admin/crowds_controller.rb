@@ -9,35 +9,8 @@ module Eventual
       @crowds = Crowd.default_where(q_params).page(params[:page])
     end
 
-    def new
-      @crowd = Crowd.new
-    end
-
-    def create
-      @crowd = Crowd.new(crowd_params)
-
-      unless @crowd.save
-        render :new, locals: { model: @crowd }, status: :unprocessable_entity
-      end
-    end
-
     def show
       @crowd_members = @crowd.crowd_members.includes(:member)
-    end
-
-    def edit
-    end
-
-    def update
-      @crowd.assign_attributes(crowd_params)
-
-      unless @crowd.save
-        render :edit, locals: { model: @crowd }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @crowd.destroy
     end
 
     private

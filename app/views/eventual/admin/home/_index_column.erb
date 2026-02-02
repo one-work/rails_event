@@ -1,0 +1,17 @@
+<div class="grid">
+  <%= link_to({ controller: 'eventual/admin/time_lists' }, data: { turbo_frame: 'panel', action: 'menu-popup#enter' }, class: active_helper(controllers: ['time_lists'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
+    <span><%= t('eventual.admin.time_lists.index.title') %></span>
+  <% end %>
+  <%= link_to({ controller: 'eventual/admin/places' }, class: active_helper(controllers: ['places', 'place_taxons'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
+    <span><%= t('eventual.admin.places.index.title') %></span>
+  <% end %>
+  <%= link_to({ controller: 'eventual/admin/crowds' }, class: active_helper(controllers: ['crowds'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
+    <span><%= t('eventual.admin.crowds.index.title') %></span>
+  <% end %>
+  <%= link_to({ controller: 'eventual/admin/events' }, class: active_helper(controllers: ['events'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
+    <span><%= t('eventual.admin.events.index.title') %></span>
+  <% end %>
+  <%= link_to({ controller: 'eventual/admin/plans' }, class: active_helper(controllers: ['plans'], item: 'cell button is-fullwidth', active: 'cell button is-fullwidth is-active')) do %>
+    <span><%= t('eventual.admin.plans.index.title') %></span>
+  <% end %>
+</div>
