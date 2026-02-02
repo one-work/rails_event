@@ -4,11 +4,12 @@ module Eventual
 
     included do
       attribute :plan_on, :date
+      attribute :plan_at, :datetime
       attribute :bookings_count, :integer, default: 0
       attribute :plan_participants_count, :integer, default: 0
-      attribute :plan_on, :date
       attribute :repeat_index, :string
       attribute :extra, :json
+      attribute :ref_ident, :string, index: true
 
       belongs_to :planned, polymorphic: true
 
