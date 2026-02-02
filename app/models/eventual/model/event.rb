@@ -9,6 +9,8 @@ module Eventual
       attribute :event_participants_count, :integer, default: 0
       attribute :event_items_count, :integer, default: 0
       attribute :members_count, :integer, default: 0
+      attribute :duration_mins, :integer
+      attribute :ref_ident, :string, comment: '外部资源关联 ID'
 
       belongs_to :organ, class_name: 'Org::Organ', optional: true
 
