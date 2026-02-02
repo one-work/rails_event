@@ -1,0 +1,1 @@
+Event = Eventual::Event unless defined? Event
