@@ -1,7 +1,7 @@
 module Eventual
   class PlansController < BaseController
     before_action :set_event
-    before_action :set_place, only: [:show]
+    before_action :set_plan, only: [:show]
 
     def index
       q_params = {}
