@@ -5,7 +5,7 @@
     <% @plan.hall.cols.times do |col| %>
       <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
       <% if seat %>
-        <div class="cell" data-xx-value="<%= seat.slice('area', 'seatNo', 'status').to_json %>">
+        <div data-seat="<%= seat.slice('area', 'seatNo', 'status').to_json %>" class="cell">
           <%= check_box_tag 'xx', class: 'checkbox xl' %>
         </div>
       <% end %>
