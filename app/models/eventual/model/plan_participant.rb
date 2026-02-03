@@ -10,15 +10,17 @@ module Eventual
       belongs_to :event_participant, optional: true
       belongs_to :participant, polymorphic: true
 
-      after_initialize if: :new_record? do
-        if self.event_participant
-          self.participant = event_participant.participant
-        end
-        if self.participant_type == 'Crowd'
-          self.type = 'CrowdParticipant'
-        else
-          self.type = 'NormalParticipant'
-        end
+      after_initialize :xx, if: :new_record?
+    end
+
+    def xx
+      if self.event_participant
+        self.participant = event_participant.participant
+      end
+      if self.participant_type == 'Crowd'
+        self.type = 'CrowdParticipant'
+      else
+        self.type = 'NormalParticipant'
       end
     end
 
