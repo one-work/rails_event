@@ -4,7 +4,7 @@
       <%= image_tag model.logo.variant(resize_to_limit: [64, 64]) if model.logo.attached? %>
     </figure>
   </div>
-  <%= link_to({ action: 'show', id: model.id }, class: 'media-content') do %>
+  <%= link_to({ controller: 'event/places', event_id: model.id }, class: 'media-content') do %>
     <%= yield %>
   <% end %>
   <div class="media-right">

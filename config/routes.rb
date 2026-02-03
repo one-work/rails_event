@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       collection do
         get :summary
       end
+      resources :places, controller: 'event/places'
     end
 
     namespace :admin, defaults: { namespace: 'admin' } do
