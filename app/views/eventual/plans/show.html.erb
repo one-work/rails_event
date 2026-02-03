@@ -1,14 +1,15 @@
-<div class="fixed-grid has-<%= @plan.hall.cols %>-cols">
+<div class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
 <% @plan.hall.rows.times do |row| %>
   <div class="grid" id="row_<%= row %>">
-  <% @plan.hall.cols.times do |col| %>
-    <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
-    <% if seat %>
-      <div class="cell">
-        <%= check_box_tag 'xx' %>
-      </div>
+    <span class="text-grey"><%= row + 1 %></span>
+    <% @plan.hall.cols.times do |col| %>
+      <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
+      <% if seat %>
+        <div class="cell">
+          <%= check_box_tag 'xx', class: 'checkbox xl' %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 <% end %>
 </div>
