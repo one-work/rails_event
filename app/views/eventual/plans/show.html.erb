@@ -1,0 +1,11 @@
+<div class="fixed-grid has-<%= @plan.hall.cols %>-cols">
+  <% @plan.hall.rows.times do |row| %>
+  <div class="grid" id="row_<%= row %>">
+    <% @plan.hall.cols.times do |col| %>
+    <div class="cell">
+      <%= check_box_tag 'xx' %>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>

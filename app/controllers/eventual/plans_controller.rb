@@ -8,10 +8,9 @@ module Eventual
       q_params.merge! default_params
       q_params.merge! params.permit(:place_taxon_id)
 
-      @plans = @event.plans.page(params[:page])
+      @plans = @event.plans.includes(:place, :hall).page(params[:page])
 
       @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-      @places = ActiveRecord::Associations::Preloader.new(records: @plans, associations: [:place]).call[0].preloaded_records
     end
 
     private
