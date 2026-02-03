@@ -1,4 +1,5 @@
 <div data-controller="seats">
+  <%= form_with id: 'seat_form', data: { seats_target: 'form' } do %><% end %>
   <div class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
   <% @plan.hall.rows.times do |row| %>
     <div class="grid" id="row_<%= row %>">
@@ -7,7 +8,7 @@
         <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
         <% if seat %>
           <div data-seat-no="<%= seat['seatNo'] %>" class="cell">
-            <%= check_box_tag 'xx', data: { action: 'seats#choose' }, class: 'checkbox xl' %>
+            <%= check_box_tag 'xx', data: { action: 'seats#choose' }, class: 'checkbox xl', id: nil, form: 'seat_form' %>
           </div>
         <% end %>
       <% end %>
