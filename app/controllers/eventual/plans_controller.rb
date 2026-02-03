@@ -8,8 +8,10 @@ module Eventual
       q_params.merge! default_params
       q_params.merge! params.permit(:place_taxon_id)
 
-      @place_taxons = PlaceTaxon.default_where(default_params)
-      @places = Place.default_where(q_params).page(params[:page])
+      @plans = @event.plans.page(params[:page])
+
+      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+      @places = ActiveRecord::Associations::Preloader.new(records: @plans, associations: [:place]).call[0].preloaded_records
     end
 
     private
