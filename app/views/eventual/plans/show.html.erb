@@ -1,15 +1,20 @@
-<div data-controller="seats" class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
-<% @plan.hall.rows.times do |row| %>
-  <div class="grid" id="row_<%= row %>">
-    <div class="cell text-grey"><%= row + 1 %></div>
-    <% @plan.hall.cols.times do |col| %>
-      <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
-      <% if seat %>
-        <div data-seat="<%= seat.slice('area', 'seatNo', 'status').to_json %>" class="cell">
-          <%= check_box_tag 'xx', class: 'checkbox xl' %>
-        </div>
+<div data-controller="seats">
+  <div class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
+  <% @plan.hall.rows.times do |row| %>
+    <div class="grid" id="row_<%= row %>">
+      <div class="cell text-grey"><%= row + 1 %></div>
+      <% @plan.hall.cols.times do |col| %>
+        <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
+        <% if seat %>
+          <div data-seat-no="<%= seat['seatNo'] %>" class="cell">
+            <%= check_box_tag 'xx', data: { action: 'seats#choose' }, class: 'checkbox xl' %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+  <% end %>
   </div>
-<% end %>
+  <div data-seats-target="price">
+
+  </div>
 </div>
