@@ -1,7 +1,7 @@
 <div data-controller="seats" class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
 <% @plan.hall.rows.times do |row| %>
   <div class="grid" id="row_<%= row %>">
-    <span class="text-grey"><%= row + 1 %></span>
+    <div class="cell text-grey"><%= row + 1 %></div>
     <% @plan.hall.cols.times do |col| %>
       <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
       <% if seat %>
