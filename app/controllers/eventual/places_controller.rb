@@ -11,9 +11,6 @@ module Eventual
       @places = Place.default_where(q_params).page(params[:page])
     end
 
-    def show
-    end
-
     private
     def set_place
       @place = Place.find(params[:id])
