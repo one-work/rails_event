@@ -1,6 +1,5 @@
 <p>
-<% model.attributes.slice('name', 'title').each do |_, value| %>
-  <span><%= value %></span>
-<% end %>
+  <span><%= model.name %></span>
 </p>
+<p class="text-grey"><%= model.description.truncate(30) %></p>
 <p class="size-7 text-grey"><time data-controller="time"><%= model.created_at.to_fs(:iso8601) %></time></p>
