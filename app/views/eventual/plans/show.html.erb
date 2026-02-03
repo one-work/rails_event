@@ -1,11 +1,11 @@
-<div class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
+<div data-controller="seats" class="fixed-grid has-<%= @plan.hall.cols + 1 %>-cols">
 <% @plan.hall.rows.times do |row| %>
   <div class="grid" id="row_<%= row %>">
     <span class="text-grey"><%= row + 1 %></span>
     <% @plan.hall.cols.times do |col| %>
       <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
       <% if seat %>
-        <div class="cell">
+        <div class="cell" data-xx-value="<%= seat.slice('area', 'seatNo', 'status').to_json %>">
           <%= check_box_tag 'xx', class: 'checkbox xl' %>
         </div>
       <% end %>
