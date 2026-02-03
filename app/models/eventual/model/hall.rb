@@ -8,6 +8,7 @@ module Eventual
       attribute :cols, :integer
       attribute :min_members, :integer, default: 1
       attribute :max_members, :integer
+      attribute :seats_count, :integer, default: 0
 
       belongs_to :place, counter_cache: true
       has_many :seats

@@ -8,6 +8,7 @@ module Eventual
       attribute :max_members, :integer
 
       belongs_to :place, counter_cache: true
+      belongs_to :hall, counter_cache: true, optional: true
 
       has_many :plans
 
