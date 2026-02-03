@@ -22,6 +22,7 @@ module Eventual
       has_many :crowds, through: :event_participants
       has_many :event_grants, dependent: :destroy
       has_many :plans, dependent: :delete_all
+      has_many :planned_places, class_name: 'Place', through: :plans, source: :place
 
       has_one_attached :logo
     end
