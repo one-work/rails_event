@@ -1,5 +1,5 @@
 module Eventual
-  module Model::PlanParticipant
+  module Model::PlanJoin
     extend ActiveSupport::Concern
 
     included do
