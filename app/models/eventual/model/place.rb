@@ -9,6 +9,7 @@ module Eventual
       attribute :tel, :string
       attribute :color, :string
       attribute :seats_count, :integer, default: 0
+      attribute :halls_count, :integer, default: 0
       attribute :plans_count, :integer, default: 0
       attribute :ref_ident, :string
 

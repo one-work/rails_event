@@ -1,0 +1,1 @@
+Hall = Eventual::Hall unless defined? Hall
