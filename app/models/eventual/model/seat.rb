@@ -4,6 +4,8 @@ module Eventual
 
     included do
       attribute :name, :string
+      attribute :row, :integer
+      attribute :col, :integer
       attribute :min_members, :integer, default: 1
       attribute :max_members, :integer
 
