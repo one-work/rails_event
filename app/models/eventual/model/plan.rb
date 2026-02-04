@@ -22,6 +22,9 @@ module Eventual
 
       has_many :bookings, dependent: :destroy
       has_many :plan_attenders, dependent: :nullify
+      has_many :plan_joins, dependent: :delete_all
+
+      accepts_nested_attributes_for :plan_joins
 
       validates :plan_on, presence: true
 
