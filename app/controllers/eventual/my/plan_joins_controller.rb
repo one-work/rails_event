@@ -3,11 +3,16 @@ module Eventual
     before_action :set_plan
 
     def create
-      @plan_joins = params[:plan_join].map do |pj|
+      @order = current_user.orders.build
+      params[:plan_join].each do |pj|
         plan_join = @plan.plan_joins.find_or_initialize_by(seat_no: pj[:seat_no])
         plan_join.user = current_user
         plan_join.save
-        plan_join
+
+        @order.items.build(
+          good_type: plan_join.base_class_name,
+          good_id: plan_join.id
+        )
       end
     end
 
