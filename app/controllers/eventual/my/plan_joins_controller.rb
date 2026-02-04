@@ -13,8 +13,8 @@ module Eventual
     end
 
     def plan_join_params
-      _p = params.fetch(:plan_join, {}).permit(
-        :seat_no
+      _p = params.permit(
+        plan_join: [:seat_no]
       )
       _p.merge! user_id: current_user.id
     end
