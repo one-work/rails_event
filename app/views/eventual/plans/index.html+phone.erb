@@ -1,9 +1,11 @@
 <%= render 'filter_bar' %>
 
-<div class="fixed-grid">
+<div class="fixed-grid has-auto-count">
   <div class="grid">
   <% @plan_ons.each do |plan| %>
-    <div class="cell"><%= plan.plan_on %></div>
+    <div class="cell">
+      <%= link_to plan.plan_on.to_fs(:month_and_day), { plan_on: plan.plan_on.to_fs(:date) } %>
+    </div>
   <% end %>
   </div>
 </div>

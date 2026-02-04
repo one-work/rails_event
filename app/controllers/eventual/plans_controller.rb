@@ -4,14 +4,16 @@ module Eventual
     before_action :set_plan, only: [:show]
 
     def index
-      q_params = {}
-      q_params.merge! default_params
-      q_params.merge! params.permit(:place_taxon_id)
+      q_params = {
+        plan_on: Date.today
+      }
+      q_params.merge! params.permit(:plan_on)
+      #q_params.merge! default_params
 
       @plans = @event.plans.where(plan_on: Date.today..).page(params[:page])
 
       @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-      @plans = @plans.includes(:place, :hall).where(plan_on: Date.today)
+      @plans = @plans.includes(:place, :hall).where(q_params)
     end
 
     def place
