@@ -22,7 +22,7 @@ module Eventual
       @plans = @plans.includes(:hall).order(plan_at: :asc)
     end
 
-    def plan
+    def show
       if @plan.seats.blank?
         @plan.sync_seats
       end
