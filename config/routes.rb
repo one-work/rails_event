@@ -109,4 +109,8 @@ Rails.application.routes.draw do
       resources :plan_items
     end
   end
+
+  resolve 'Eventual::PlanJoin' do |model|
+    url_for(controller: 'eventual/my/plan_joins', action: 'show', plan_id: model.plan_id, id: model.id)
+  end
 end
