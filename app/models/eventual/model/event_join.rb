@@ -1,5 +1,5 @@
 module Eventual
-  module Model::EventParticipant
+  module Model::EventJoin
     extend ActiveSupport::Concern
 
     included do

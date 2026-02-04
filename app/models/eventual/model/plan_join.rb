@@ -6,16 +6,17 @@ module Eventual
       attribute :type, :string
       attribute :status, :string, comment: '默认 event_participant 有效'
 
-      belongs_to :planning, polymorphic: true
-      belongs_to :participant, polymorphic: true
+      belongs_to :user, class_name: 'Auth::User', optional: true
 
-      belongs_to :event_participant, optional: true
+      belongs_to :plan
+      belongs_to :seat, optional: true
+      belongs_to :event_join, optional: true
 
-      after_initialize :xx, if: :new_record?
+      #after_initialize :xx, if: :new_record?
     end
 
     def xx
-      if self.event_participant
+      if self.event_join
         self.participant = event_participant.participant
       end
       if self.participant_type == 'Crowd'
