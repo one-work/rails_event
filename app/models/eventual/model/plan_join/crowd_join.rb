@@ -1,5 +1,5 @@
 module Eventual
-  module Model::PlanParticipant::CrowdParticipant
+  module Model::PlanJoin::CrowdJoin
     extend ActiveSupport::Concern
 
     included do

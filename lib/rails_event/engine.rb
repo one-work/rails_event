@@ -5,11 +5,11 @@ module RailsEvent
   class Engine < ::Rails::Engine
 
     config.autoload_paths += Dir[
-      "#{config.root}/app/models/plan_participant"
+      "#{config.root}/app/models/plan_join"
     ]
 
     config.eager_load_paths += Dir[
-      "#{config.root}/app/models/plan_participant"
+      "#{config.root}/app/models/plan_join"
     ]
 
     config.generators do |g|
