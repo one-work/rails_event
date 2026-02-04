@@ -9,7 +9,5 @@
 </div>
 
 <%= render layout: 'index_list' do %>
-  <% @plans.group_by(&:place).each do |place, plans| %>
-    <%= render partial: 'index_item', layout: 'index_item_actions', locals: { place: place, plans: plans } %>
-  <% end %>
+  <%= render partial: 'index_item', layout: 'index_item_actions', collection: @plans, as: :model %>
 <% end %>

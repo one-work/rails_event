@@ -23,7 +23,11 @@ Rails.application.routes.draw do
       collection do
         get :summary
       end
-      resources :plans
+      resources :plans do
+        collection do
+          get 'place/:place_id' => :place
+        end
+      end
     end
 
     namespace :admin, defaults: { namespace: 'admin' } do

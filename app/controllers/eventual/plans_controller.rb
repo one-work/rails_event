@@ -8,10 +8,18 @@ module Eventual
       q_params.merge! default_params
       q_params.merge! params.permit(:place_taxon_id)
 
-      @plans = @event.plans.where(plan_on: Date.today..).page(params[:page])
+      @plans = @event.plans.where(plan_on: Date.today).page(params[:page])
 
       @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
       @plans = @plans.includes(:place, :hall)
+    end
+
+    def place
+      @place = Place.find params[:place_id]
+      @plans = @event.plans.where(place_id: params[:place_id], plan_on: Date.today).page(params[:page])
+      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+
+      @plans = @plans.includes(:hall).order(plan_at: :asc)
     end
 
     private
