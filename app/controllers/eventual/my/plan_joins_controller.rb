@@ -11,7 +11,8 @@ module Eventual
 
         @order.items.build(
           good_type: plan_join.base_class_name,
-          good_id: plan_join.id
+          good_id: plan_join.id,
+          aim: 'use'
         )
       end
     end
