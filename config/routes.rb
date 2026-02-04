@@ -100,6 +100,7 @@ Rails.application.routes.draw do
     namespace :my, defaults: { namespace: 'my' } do
       resources :time_plans
       resources :places
+      resources :plan_joins
     end
 
     namespace :me, defaults: { namespace: 'me' } do
