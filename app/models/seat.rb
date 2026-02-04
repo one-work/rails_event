@@ -1,0 +1,1 @@
+Seat = Eventual::Seat unless defined? Seat
