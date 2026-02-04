@@ -1,0 +1,1 @@
+PlanJoin = Eventual::PlanJoin unless defined? PlanJoin
