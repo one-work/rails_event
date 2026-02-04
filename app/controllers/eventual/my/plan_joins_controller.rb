@@ -1,7 +1,15 @@
 module Eventual
   class My::PlanJoinsController < My::BaseController
     before_action :set_plan
-    before_action :set_new_plan_join, only: [:new, :create]
+
+    def create
+      @plan_joins = params[:plan_join].map do |pj|
+        plan_join = @plan.plan_joins.find_or_initialize_by(seat_no: pj[:seat_no])
+        plan_join.user = current_user
+        plan_join.save
+        plan_join
+      end
+    end
 
     private
     def set_plan
