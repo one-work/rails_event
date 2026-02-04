@@ -22,6 +22,12 @@ module Eventual
       @plans = @plans.includes(:hall).order(plan_at: :asc)
     end
 
+    def plan
+      if @plan.seats.blank?
+        @plan.sync_seats
+      end
+    end
+
     private
     def set_event
       @event = Event.find params[:event_id]
