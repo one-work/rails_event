@@ -9,10 +9,17 @@ module Eventual
       belongs_to :user, class_name: 'Auth::User', optional: true
 
       belongs_to :plan
-      belongs_to :seat, optional: true
+      #belongs_to :seat, optional: true
+      belongs_to :place, optional: true
+      belongs_to :hall, optional: true
       belongs_to :event_join, optional: true
 
-      #after_initialize :xx, if: :new_record?
+      after_initialize :init_from_plan, if: :new_record?
+    end
+
+    def init_from_plan
+      self.place_id = plan.place_id
+      self.hall_id = plan.hall_id
     end
 
     def xx
