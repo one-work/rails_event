@@ -5,14 +5,14 @@
     <div id="row_<%= row %>" class="grid" style="--bulma-grid-column-count: <%= @plan.hall.cols + 1 %>">
       <div class="cell text-grey"><%= row + 1 %></div>
       <% @plan.hall.cols.times do |col| %>
-        <% seat = @plan.sorted_seats.dig((row + 1).to_s, col) %>
+        <% seat = @plan.sorted_seats.dig((row + 1).to_s, (col + 1).to_s) %>
         <% if seat %>
           <div data-controller="input" data-col="<%= col %>" data-seat-no="<%= seat['seatNo'] %>" class="cell">
             <%= check_box_tag 'plan_join[][seat_no]', seat['seatNo'], data: { action: 'seats#choose input#submit' }, class: 'checkbox xl', id: nil, form: 'seat_form' %>
           </div>
         <% else %>
-          <div data-col="<%= col %>">
-            <%= check_box_tag '', disabled: true %>
+          <div data-col="<%= col %>" class="cell">
+            <%= check_box_tag '', disabled: true, class: 'checkbox xl', id: nil %>
           </div>
         <% end %>
       <% end %>
