@@ -9,8 +9,8 @@ module Eventual
       belongs_to :crowd
 
       has_many :crowd_members, foreign_key: :crowd_id, primary_key: :crowd_id
-      has_many :plan_items, as: :plan, dependent: :destroy
-      has_many :event_participants
+      has_many :plans, dependent: :destroy
+      has_many :event_joins
       has_many :events, foreign_key: :event_id, primary_key: :event_id
 
       after_create_commit :sync_to_event_participants

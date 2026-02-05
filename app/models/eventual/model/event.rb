@@ -6,7 +6,7 @@ module Eventual
       attribute :name, :string
       attribute :description, :string, limit: 4096
       attribute :position, :integer
-      attribute :event_participants_count, :integer, default: 0
+      attribute :event_joins_count, :integer, default: 0
       attribute :event_items_count, :integer, default: 0
       attribute :members_count, :integer, default: 0
       attribute :duration_mins, :integer
@@ -18,8 +18,8 @@ module Eventual
       has_many :event_items, dependent: :nullify
       accepts_nested_attributes_for :event_items, allow_destroy: true
 
-      has_many :event_participants, dependent: :destroy
-      has_many :crowds, through: :event_participants
+      has_many :event_joins, dependent: :destroy
+      has_many :crowds, through: :event_joins
       has_many :event_grants, dependent: :destroy
       has_many :plans, dependent: :delete_all
       has_many :planned_places, class_name: 'Place', through: :plans, source: :place

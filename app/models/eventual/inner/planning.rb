@@ -3,8 +3,8 @@ module Eventual
     extend ActiveSupport::Concern
 
     included do
-      has_many :plan_participants, as: :planning, dependent: :delete_all
-      accepts_nested_attributes_for :plan_participants
+      has_many :plan_joins, as: :planning, dependent: :delete_all
+      accepts_nested_attributes_for :plan_joins
 
       has_many :crowd_participants, as: :planning
       has_many :normal_participants, as: :planning
