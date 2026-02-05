@@ -22,6 +22,14 @@ module Eventual
       @plans = @plans.includes(:place, :hall).where(q_params)
     end
 
+    def place
+      @place = Place.find params[:place_id]
+      @plans = @event.plans.where(place_id: params[:place_id], plan_on: Date.today).page(params[:page])
+      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+
+      @plans = @plans.includes(:hall).order(plan_at: :asc)
+    end
+
     def show
       if @plan.seats.blank?
         @plan.sync_seats
