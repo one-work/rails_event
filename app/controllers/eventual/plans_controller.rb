@@ -2,12 +2,18 @@ module Eventual
   class PlansController < BaseController
     before_action :set_event
     before_action :set_plan, only: [:show]
+    before_action :set_areas, only: [:index]
+    before_action :set_area, only: [:index]
 
     def index
       q_params = {
         plan_on: Date.today
       }
       q_params.merge! params.permit(:plan_on)
+      if params[:area_id]
+        q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
+      end
+      
       #q_params.merge! default_params
 
       @plans = @event.plans.where(plan_on: Date.today..).page(params[:page])
@@ -37,6 +43,19 @@ module Eventual
 
     def set_plan
       @plan = @event.plans.find(params[:id])
+    end
+
+    def set_areas
+      area = Area.find_by(full: '河北') || Area.first
+      @areas = area.children
+    end
+
+    def set_area
+      if params[:area_id]
+        @area = Area.find params[:area_id]
+      else
+        @area = Area.find_by(full: '河北') || Area.first
+      end
     end
 
   end
