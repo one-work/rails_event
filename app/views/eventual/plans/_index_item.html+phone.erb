@@ -1,4 +1,8 @@
 <p><%= place.name %></p>
+<p class="size-7 text-grey">
+  <%= svg_tag 'location-dot' %>
+  <span><%= place.address %></span>
+</p>
 <p>
 <% plans.each do |plan| %>
   <time data-controller="time" data-format="T" class="tag"><%= plan.plan_at.to_fs(:iso8601) %></time>
