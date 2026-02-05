@@ -2,7 +2,7 @@ module Eventual
   class EventsController < BaseController
 
     def index
-      @events = Event.page(params[:page])
+      @events = Event.includes(logo_attachment: :blob).page(params[:page])
     end
 
     def summary
