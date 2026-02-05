@@ -5,7 +5,7 @@
   <% @plan_ons.each do |plan| %>
     <div class="level-item">
       <%= link_to({ plan_on: plan.plan_on.to_fs(:date) }, class: 'text-grey') do %>
-        <span>今天</span>
+        <span><%= extra_distance_date(plan.plan_on) %></span>
         <span><%= plan.plan_on.to_fs(:month_and_day) %></span>
         <span class="text-grey-lighter">|</span>
       <% end %>
