@@ -1,9 +1,11 @@
 module Eventual
-  class PlansController < BaseController
-    before_action :set_event
+  class Place::PlansController < PlansController
+    before_action :set_place
     before_action :set_plan, only: [:show]
     before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
+
+    skip_before_action :set_event
 
     def index
       q_params = {
@@ -16,10 +18,10 @@ module Eventual
 
       #q_params.merge! default_params
 
-      @plans = @event.plans.where(plan_on: Date.today..).page(params[:page])
+      @plans = @place.plans.where(plan_on: Date.today..).page(params[:page])
 
       @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-      @plans = @plans.includes(:place, :hall).where(q_params)
+      @plans = @plans.includes(:event, :hall).where(q_params)
     end
 
     def place
@@ -37,12 +39,12 @@ module Eventual
     end
 
     private
-    def set_event
-      @event = Event.find params[:event_id]
+    def set_place
+      @place = Place.find params[:place_id]
     end
 
     def set_plan
-      @plan = @event.plans.find(params[:id])
+      @plan = @place.plans.find(params[:id])
     end
 
     def set_areas
