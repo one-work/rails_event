@@ -1,10 +1,13 @@
 <%= render 'filter_dropdown_areas' %>
 
-<div class="fixed-grid has-4-cols">
-  <div class="grid">
+<div class="level">
+  <div class="level-left flex-direction-row overflow-x-scroll">
   <% @plan_ons.each do |plan| %>
-    <div class="cell">
-      <%= link_to plan.plan_on.to_fs(:month_and_day), { plan_on: plan.plan_on.to_fs(:date) } %>
+    <div class="level-item">
+      <%= link_to({ plan_on: plan.plan_on.to_fs(:date) }) do %>
+        <span>今天</span>
+        <span><%= plan.plan_on.to_fs(:month_and_day) %></span>
+      <% end %>
     </div>
   <% end %>
   </div>
