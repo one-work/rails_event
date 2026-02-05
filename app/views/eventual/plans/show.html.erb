@@ -1,4 +1,4 @@
-<div data-controller="seats" class="table-container">
+<div data-controller="seats" class="mt-3">
   <%= form_with url: { controller: 'eventual/my/plan_joins', action: 'create', plan_id: @plan.id }, id: 'seat_form', data: { seats_target: 'form' } do %><% end %>
   <div class="fixed-grid">
   <% @plan.hall.rows.times do |row| %>
@@ -8,7 +8,7 @@
         <% seat = @plan.sorted_seats.dig((row + 1).to_s, (col + 1).to_s) %>
         <% if seat %>
           <div data-controller="input" data-col="<%= col %>" data-seat-no="<%= seat['seatNo'] %>" class="cell">
-            <%= check_box_tag 'plan_join[][seat_no]', seat['seatNo'], data: { action: 'seats#choose input#submit' }, class: 'checkbox xl', id: nil, form: 'seat_form' %>
+            <%= check_box_tag 'plan_join[][seat_no]', seat['seatNo'], data: { action: 'seats#choose input#submit' }, class: 'checkbox xl outline-danger', id: nil, form: 'seat_form' %>
           </div>
         <% else %>
           <div data-col="<%= col %>" class="cell">
