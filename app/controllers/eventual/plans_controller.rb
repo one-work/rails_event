@@ -13,7 +13,7 @@ module Eventual
       if params[:area_id]
         q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
       end
-      
+
       #q_params.merge! default_params
 
       @plans = @event.plans.where(plan_on: Date.today..).page(params[:page])
