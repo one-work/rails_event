@@ -3,15 +3,7 @@
   <p class="size-7 text-grey"><%= @place.address %></p>
 </div>
 
-<div class="fixed-grid has-4-cols">
-  <div class="grid">
-  <% @plan_ons.each do |plan| %>
-    <div class="cell">
-      <%= link_to plan.plan_on.to_fs(:month_and_day), { plan_on: plan.plan_on.to_fs(:date) } %>
-    </div>
-  <% end %>
-  </div>
-</div>
+<%= render 'plan_ons' %>
 
 <%= render layout: 'index_list' do %>
   <%= render partial: 'index_item', layout: 'index_item_actions', collection: @plans, as: :model %>

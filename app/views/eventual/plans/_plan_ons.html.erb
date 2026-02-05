@@ -1,0 +1,13 @@
+<div class="level">
+  <div class="level-left flex-direction-row overflow-x-scroll px-3">
+  <% @plan_ons.each do |plan| %>
+    <div class="level-item">
+      <%= link_to({ plan_on: plan.plan_on.to_fs(:date) }, class: 'text-grey') do %>
+        <span><%= extra_distance_date(plan.plan_on) %></span>
+        <span><%= plan.plan_on.to_fs(:month_and_day) %></span>
+        <span class="text-grey-lighter">|</span>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+</div>
