@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     end
     resources :places do
       resources :seats
+      resources :plans, controller: 'place/plans'
     end
     resources :events do
       collection do
