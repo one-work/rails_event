@@ -1,2 +1,5 @@
-<p><%= model.name %></p>
-<p><%= model.address %></p>
+<p class="text-dark"><%= model.name %></p>
+<p>
+  <%= svg_tag 'location-dot' %>
+  <span class="size-7 text-grey ml-1"><%= model.address %></span>
+</p>

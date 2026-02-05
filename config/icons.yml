@@ -1,6 +1,7 @@
 light:
   - eye
   - gear
+  - location-dot
   - pencil
   - qrcode
   - trash
