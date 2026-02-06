@@ -31,7 +31,7 @@ module Eventual
       default_scope -> { order(plan_on: :asc) }
       scope :valid, -> { default_where('plan_on-gte': Date.today) }
 
-      before_validation :sync_from_planned
+      #before_validation :sync_from_planned
     end
 
     def attenders
