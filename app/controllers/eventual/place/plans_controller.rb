@@ -48,7 +48,7 @@ module Eventual
     end
 
     def set_areas
-      area = Area.find_by(full: '河北') || Area.first
+      area = Area.find_by(full: '河北省') || Area.first
       @areas = area.children
     end
 
@@ -56,7 +56,7 @@ module Eventual
       if params[:area_id]
         @area = Area.find params[:area_id]
       else
-        @area = Area.find_by(full: '河北') || Area.first
+        @area = Area.find_by(full: '河北省') || Area.first
       end
     end
 
