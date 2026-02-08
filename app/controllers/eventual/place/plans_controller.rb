@@ -32,12 +32,6 @@ module Eventual
       @plans = @plans.includes(:hall).order(plan_at: :asc)
     end
 
-    def show
-      if @plan.seats.blank?
-        @plan.sync_seats
-      end
-    end
-
     private
     def set_place
       @place = Place.find params[:place_id]
