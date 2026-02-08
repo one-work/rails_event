@@ -32,7 +32,10 @@ module Eventual
 
     def show
       if @plan.seats.blank?
-        @plan.sync_seats
+        r = @plan.sync_seats
+        if r['code'] == 500
+          render 'err', locals: { message: r['message'] }
+        end
       end
     end
 
