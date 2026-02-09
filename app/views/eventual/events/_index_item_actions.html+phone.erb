@@ -8,7 +8,7 @@
     <%= yield %>
   <% end %>
   <div class="media-right">
-    <%= link_to({ controller: 'plans', event_id: model.id }, class: 'button is-small is-rounded is-info') do %>
+    <%= link_to({ controller: 'plans', event_id: model.id }, class: 'button is-small is-rounded is-warning') do %>
       <span>购票</span>
     <% end %>
   </div>
