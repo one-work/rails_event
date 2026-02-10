@@ -1,7 +1,7 @@
 <div class="level overflow-x-scroll">
   <div class="level-left flex-direction-row overflow-x-scroll px-3">
   <% @events.each do |plan| %>
-    <div class="level-item">
+    <%= link_to({ event_id: plan.event_id }, class: 'level-item') do %>
       <div class="card" style="max-width: 128px">
         <div class="card-image">
           <figure class="image">
@@ -12,7 +12,7 @@
           <span class="size-7"><%= plan.event.name %></span>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
   </div>
 </div>
