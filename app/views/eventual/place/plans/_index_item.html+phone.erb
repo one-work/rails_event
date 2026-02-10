@@ -2,10 +2,10 @@
   <span class="text-dark"><%= event.name %></span>
 </p>
 <p>
-<% plans.each do |plan| %>
-  <div class="tag has-addons">
-    <span><%= plan.hall.name %></span>
-    <time data-controller="time" data-format="T" class="tag"><%= plan.plan_at.to_fs(:iso8601) %></time>
+<% plans.sort_by(&:plan_at).each do |plan| %>
+  <div class="tags has-addons mt-1">
+    <time data-controller="time" data-format="T" class="tag is-light is-warning"><%= plan.plan_at.to_fs(:iso8601) %></time>
+    <span class="tag"><%= plan.hall.name %></span>
   </div>
 <% end %>
 </p>
