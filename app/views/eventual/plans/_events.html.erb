@@ -4,10 +4,12 @@
     <div class="level-item">
       <div class="card" style="max-width: 128px">
         <div class="card-image">
-          <%= image_tag plan.event.logo, class: 'image' %>
+          <figure class="image">
+            <%= image_tag plan.event.logo, loading: 'lazy' %>
+          </figure>
         </div>
         <div class="card-content">
-          <span><%= plan.event.name %></span>
+          <span class="size-7"><%= plan.event.name %></span>
         </div>
       </div>
     </div>
