@@ -5,7 +5,7 @@ module Eventual
     def index
       q_params = {}
       q_params.merge! default_params
-      q_params.merge! params.permit(:name, 'max_members-gte')
+      q_params.merge! params.permit('name-like', 'max_members-gte')
       @places = Place.default_where(q_params).page(params[:page])
     end
 

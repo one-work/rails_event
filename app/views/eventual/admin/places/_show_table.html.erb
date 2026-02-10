@@ -1,8 +1,4 @@
-<tr>
-  <td class="text-right"><%= Place.human_attribute_name(:place_number) %></td>
-  <td><%= @place.place_number %></td>
-</tr>
-<tr>
-  <td class="text-right"><%= Place.human_attribute_name(:time_plans_count) %></td>
-  <td><%= @place.time_plans_count %></td>
-</tr>
+<div>
+  <dt><%= Eventual::Place.human_attribute_name(:name) %></dt>
+  <dd><%= @place.name %></dd>
+</div>
