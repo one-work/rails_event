@@ -1,4 +1,10 @@
-<%= render 'filter_bar' %>
+<div class="box is-narrow">
+  <h2><%= @place.name %></h2>
+  <p class="size-7 text-grey">
+    <%= svg_tag 'location-dot' %>
+    <span><%= @place.address %></span>
+  </p>
+</div>
 
 <%= render 'plan_ons' %>
 
