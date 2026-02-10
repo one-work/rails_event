@@ -7,10 +7,7 @@ module Eventual
     def index
       q_params = {}
       q_params.merge! default_params
-      q_params.merge! params.permit(:place_taxon_id)
-      if params[:area_id]
-        q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
-      end
+      q_params.merge! params.permit(:area_id, :place_taxon_id)
 
       @place_taxons = PlaceTaxon.default_where(default_params)
       @places = Place.default_where(q_params).page(params[:page])
