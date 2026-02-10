@@ -7,6 +7,6 @@
 
 <%= render layout: 'index_list' do %>
   <% @plans.group_by(&:event).each do |event, plans| %>
-    <%= render partial: 'index_item', layout: 'index_item_actions', collection: plans, as: :model %>
+    <%= render partial: 'index_item', layout: 'index_item_actions', locals: { event: event, plans: plans } %>
   <% end %>
 <% end %>

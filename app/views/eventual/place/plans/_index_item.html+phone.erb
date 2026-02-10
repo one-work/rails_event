@@ -1,7 +1,11 @@
 <p>
-  <span class="text-dark"><%= model.event.name %></span>
-  <span class="text-grey ml-1"><%= model.hall.name %></span>
+  <span class="text-dark"><%= event.name %></span>
 </p>
 <p>
-  <time data-controller="time" data-format="T" class="tag"><%= model.plan_at.to_fs(:iso8601) %></time>
+<% plans.each do |plan| %>
+  <div class="tag has-addons">
+    <span><%= plan.hall.name %></span>
+    <time data-controller="time" data-format="T" class="tag"><%= plan.plan_at.to_fs(:iso8601) %></time>
+  </div>
+<% end %>
 </p>
