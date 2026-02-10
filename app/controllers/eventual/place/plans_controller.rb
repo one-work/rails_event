@@ -4,6 +4,7 @@ module Eventual
     before_action :set_plan, only: [:show]
     before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
+    before_action :set_events, only: [:event]
 
     skip_before_action :set_event
 
@@ -44,6 +45,11 @@ module Eventual
     def set_areas
       area = Area.find_by(full: '河北省') || Area.first
       @areas = area.children
+    end
+
+    def set_events
+      Date.today || params[:plan_on]
+      @events = @place.plans.includes(:event).where(plan_on: Date.today).select(:event_id, :plan_on).distinct
     end
 
     def set_area

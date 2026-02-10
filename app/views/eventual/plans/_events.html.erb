@@ -1,0 +1,14 @@
+<div class="fixed-grid overflow-x-scroll">
+  <div class="grid">
+  <% @events.each do |plan| %>
+    <div class="card cell">
+      <div class="card-image">
+        <%= image_tag plan.event.logo, class: 'image is-64x64' %>
+      </div>
+      <div class="card-content">
+        <span><%= plan.event.name %></span>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
