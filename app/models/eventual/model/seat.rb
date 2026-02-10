@@ -8,6 +8,7 @@ module Eventual
       attribute :col, :integer
       attribute :min_members, :integer, default: 1
       attribute :max_members, :integer
+      attribute :ref_ident, :string
 
       belongs_to :place, counter_cache: true
       belongs_to :hall, counter_cache: true, optional: true
