@@ -1,12 +1,14 @@
-<div class="fixed-grid overflow-x-scroll">
-  <div class="grid">
+<div class="level overflow-x-scroll">
+  <div class="level-left flex-direction-row overflow-x-scroll px-3">
   <% @events.each do |plan| %>
-    <div class="card cell">
-      <div class="card-image">
-        <%= image_tag plan.event.logo, class: 'image is-64x64' %>
-      </div>
-      <div class="card-content">
-        <span><%= plan.event.name %></span>
+    <div class="level-item">
+      <div class="card" style="max-width: 128px">
+        <div class="card-image">
+          <%= image_tag plan.event.logo, class: 'image' %>
+        </div>
+        <div class="card-content">
+          <span><%= plan.event.name %></span>
+        </div>
       </div>
     </div>
   <% end %>
