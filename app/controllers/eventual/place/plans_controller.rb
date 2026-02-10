@@ -24,6 +24,14 @@ module Eventual
       @plans = @plans.includes(:event, :hall).where(q_params).order(plan_on: :asc)
     end
 
+    def event
+      @event = Event.find params[:event_id]
+      @plans = @place.plans.where(event_id: params[:event_id], plan_on: Date.today, plan_at: Time.current..).page(params[:page])
+      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+
+      @plans = @plans.includes(:hall).order(plan_at: :asc)
+    end
+
     private
     def set_place
       @place = Place.find params[:place_id]

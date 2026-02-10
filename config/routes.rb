@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     end
     resources :places do
       resources :seats
-      resources :plans, controller: 'place/plans'
+      resources :plans, controller: 'place/plans' do
+        collection do
+          get 'event/:event_id' => :event
+        end
+      end
     end
     resources :events do
       collection do
