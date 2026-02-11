@@ -10,7 +10,7 @@ module Eventual
       q_params.merge! params.permit(:area_id, :place_taxon_id, 'name-like')
 
       @place_taxons = PlaceTaxon.default_where(default_params)
-      @places = Place.default_where(q_params).page(params[:page])
+      @places = Place.includes(:area).default_where(q_params).page(params[:page])
     end
 
     private
