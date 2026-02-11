@@ -43,11 +43,6 @@ module Eventual
       @plan = @place.plans.find(params[:id])
     end
 
-    def set_areas
-      area = Area.find_by(full: '河北省') || Area.first
-      @areas = area.children
-    end
-
     def set_events
       Date.today || params[:plan_on]
       @events = @place.plans.includes(:event).where(plan_on: Date.today).select(:event_id, :plan_on).distinct
@@ -56,14 +51,6 @@ module Eventual
     def prepare_plans
       if @place.plans.blank?
         @place.sync_plans
-      end
-    end
-
-    def set_area
-      if params[:area_id]
-        @area = Area.find params[:area_id]
-      else
-        @area = Area.find_by(full: '河北省') || Area.first
       end
     end
 
