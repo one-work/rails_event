@@ -1,6 +1,6 @@
 <div data-controller="seats" class="mt-3">
   <%= form_with url: { controller: 'eventual/my/plan_joins', action: 'create', plan_id: @plan.id }, id: 'seat_form', data: { seats_target: 'form' } do %><% end %>
-  <div class="fixed-grid">
+  <div class="fixed-grid overflow-x-auto">
   <% @plan.hall.rows.to_i.times do |row| %>
     <div id="row_<%= row %>" class="grid" style="--bulma-grid-column-count: <%= @plan.hall.cols + 1 %>">
       <div class="cell text-grey"><%= row + 1 %></div>
