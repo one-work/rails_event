@@ -1,3 +1,9 @@
 <td><%= model.name %></td>
-<td><%= model.max_members %></td>
-<td><%= model.min_members %></td>
+<td><%= model.rows %></td>
+<td><%= model.cols %></td>
+<td>
+  <%= link_to({ controller: 'seats', hall_id: model.id }) do %>
+    <%= svg_tag 'chair' %>
+    <span><%= model.seats_count %></span>
+  <% end %>
+</td>
