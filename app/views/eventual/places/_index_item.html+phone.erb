@@ -1,6 +1,8 @@
 <p class="text-dark"><%= model.name %></p>
 <p>
   <%= svg_tag 'location-dot' %>
+  <% if model.area %>
   <span class="size-7 text-grey"><%= model.area.full %></span>
+  <% end %>
   <span class="size-7 text-grey"><%= model.address %></span>
 </p>
