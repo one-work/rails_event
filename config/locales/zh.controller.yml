@@ -10,6 +10,9 @@ zh:
           title:
     admin:
       title: 预约管理
+      apps:
+        index:
+          title: 应用
       time_lists:
         index:
           title: 时间表

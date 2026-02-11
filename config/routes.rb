@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       end
       resources :place_taxons
       resources :places do
+        resources :halls
         resources :seats
       end
       resources :plans
