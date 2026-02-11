@@ -6,7 +6,7 @@
       <div class="cell text-grey"><%= row + 1 %></div>
       <% @plan.hall.cols.to_i.times do |col| %>
         <% seat = @plan.sorted_seats.dig((row + 1).to_s, (col + 1).to_s) %>
-        <% if seat %>
+        <% if seat && seat['status'] == 'N' %>
           <div data-controller="input" data-col="<%= col %>" data-seat-no="<%= seat['seatNo'] %>" class="cell">
             <%=
               check_box_tag(
@@ -18,6 +18,10 @@
                 form: 'seat_form'
               )
             %>
+          </div>
+        <% elsif seat && seat['status'] == 'LK' %>
+          <div data-col="<%= col %>" class="cell">
+            <%= svg_tag 'square-user', class: 'icon is-medium' %>
           </div>
         <% else %>
           <div data-col="<%= col %>" class="cell">
