@@ -5,6 +5,7 @@ module Eventual
     before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
     before_action :set_events, only: [:event]
+    before_action :prepare_plans, only: [:index]
 
     skip_before_action :set_event
 
@@ -50,6 +51,12 @@ module Eventual
     def set_events
       Date.today || params[:plan_on]
       @events = @place.plans.includes(:event).where(plan_on: Date.today).select(:event_id, :plan_on).distinct
+    end
+
+    def prepare_plans
+      if @place.plans.blank?
+        @place.sync_plans
+      end
     end
 
     def set_area

@@ -1,15 +1,15 @@
 <%= form_with model: @order, url: { controller: 'trade/my/orders', action: 'create' }, id: 'order_form' do |f| %>
   <%= f.fields :items do |ef| %>
-    <%= ef.hidden_field :good_type %>
-    <%= ef.hidden_field :good_id %>
-    <%= ef.hidden_field :aim %>
-    <%= ef.hidden_field :status, value: 'ordered' %>
-    <div class="tags has-addons">
+    <div data-controller="common" data-id="<%= ef.object.good.seat_no %>" class="tags has-addons is-medium">
+      <%= ef.hidden_field :good_type %>
+      <%= ef.hidden_field :good_id %>
+      <%= ef.hidden_field :aim %>
+      <%= ef.hidden_field :status, value: 'ordered' %>
       <div class="tag is-light">
         <span><%= ef.object.good.seat_no %></span>
         <span class="text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
       </div>
-      <span class="tag is-delete"></span>
+      <span data-action="click->common#removeEle" class="tag is-delete"></span>
     </div>
   <% end %>
 <% end %>

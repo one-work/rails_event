@@ -8,7 +8,16 @@
         <% seat = @plan.sorted_seats.dig((row + 1).to_s, (col + 1).to_s) %>
         <% if seat %>
           <div data-controller="input" data-col="<%= col %>" data-seat-no="<%= seat['seatNo'] %>" class="cell">
-            <%= check_box_tag 'plan_join[][seat_no]', seat['seatNo'], data: { action: 'seats#choose input#submit' }, class: 'checkbox xl outline-danger', id: nil, form: 'seat_form' %>
+            <%=
+              check_box_tag(
+                'plan_join[][seat_no]',
+                seat['seatNo'],
+                data: { action: 'seats#choose input#submit' },
+                class: 'checkbox xl outline-danger',
+                id: seat['seatNo'],
+                form: 'seat_form'
+              )
+            %>
           </div>
         <% else %>
           <div data-col="<%= col %>" class="cell">
