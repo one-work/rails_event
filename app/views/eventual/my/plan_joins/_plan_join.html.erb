@@ -1,6 +1,6 @@
 <%= form_with model: @order, url: { controller: 'trade/my/orders', action: 'create' }, id: 'order_form' do |f| %>
   <%= f.fields :items do |ef| %>
-    <div data-controller="common" data-id="<%= ef.object.good.seat_no %>" class="tags has-addons is-medium">
+    <div class="tags has-addons is-medium">
       <%= ef.hidden_field :good_type %>
       <%= ef.hidden_field :good_id %>
       <%= ef.hidden_field :aim %>
@@ -9,7 +9,7 @@
         <span><%= ef.object.good.seat_no %></span>
         <span class="text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
       </div>
-      <span data-action="click->common#removeEle" class="tag is-delete"></span>
+      <span data-id="<%= ef.object.good.seat_no %>" data-action="click->seats#uncheck" class="tag is-delete"></span>
     </div>
   <% end %>
 <% end %>
