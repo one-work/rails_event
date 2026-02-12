@@ -1,8 +1,8 @@
-<div class="level overflow-x-scroll">
-  <div class="level-left flex-direction-row overflow-x-scroll px-3">
+<div class="fixed-grid">
+  <div class="grid width-max-content" style="--bulma-grid-column-count: <%= @events.length %>">
   <% @events.each do |plan| %>
-    <%= link_to({ event_id: plan.event_id }, class: 'level-item') do %>
-      <div class="card" style="max-width: 128px">
+    <%= link_to({ event_id: plan.event_id }, class: 'cell') do %>
+      <div class="card" style="max-width: 128px;">
         <div class="card-image">
           <figure class="image">
             <%= image_tag plan.event.logo, loading: 'lazy' %>
