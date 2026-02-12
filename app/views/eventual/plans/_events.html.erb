@@ -1,11 +1,12 @@
+<div class="overflow-x-scroll" style="min-height: 200px">
 <div class="fixed-grid">
   <div class="grid width-max-content" style="--bulma-grid-column-count: <%= @events.length %>">
   <% @events.each do |plan| %>
     <%= link_to({ event_id: plan.event_id }, class: 'cell') do %>
-      <div class="card" style="max-width: 128px;">
+      <div class="card">
         <div class="card-image">
-          <figure class="image">
-            <%= image_tag plan.event.logo, loading: 'lazy' %>
+          <figure class="image" style="height: 128px">
+            <%= image_tag "#{plan.event.logo.url}!/fh/128", height: '128px', loading: 'lazy' %>
           </figure>
         </div>
         <div class="card-content">
@@ -15,4 +16,5 @@
     <% end %>
   <% end %>
   </div>
+</div>
 </div>
