@@ -5,6 +5,7 @@ module Eventual
     included do
       attribute :type, :string
       attribute :status, :string, comment: '默认 event_participant 有效'
+      attribute :plan_at, :datetime
 
       belongs_to :user, class_name: 'Auth::User', optional: true
 
@@ -20,6 +21,7 @@ module Eventual
     def init_from_plan
       self.place_id = plan.place_id
       self.hall_id = plan.hall_id
+      self.plan_at = plan.plan_at
     end
 
     def xx
