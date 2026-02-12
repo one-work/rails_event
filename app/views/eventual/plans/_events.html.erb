@@ -6,10 +6,10 @@
       <div class="card">
         <div class="card-image">
           <figure class="image" style="height: 128px">
-            <%= image_tag "#{plan.event.logo.url}!/fh/128", height: '128px', loading: 'lazy' %>
+            <%= image_tag "#{plan.event.logo.url}!/fh/128", loading: 'lazy', style: 'height: 128px; object-fit: contain' %>
           </figure>
         </div>
-        <div class="card-content">
+        <div class="card-content text-centered p-2">
           <span class="size-7"><%= plan.event.name %></span>
         </div>
       </div>
