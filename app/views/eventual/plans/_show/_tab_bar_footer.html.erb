@@ -3,6 +3,7 @@
   <p>
     <span><%= extra_distance_date(@plan.plan_on) %></span>
     <time data-controller="time" data-format="T"><%= @plan.plan_at.to_fs(:iso8601) %></time>
+    <span class="text-grey"><%= @plan.event.duration_mins %>分钟</span>
   </p>
 </div>
 <div class="buttons as-bottom">
