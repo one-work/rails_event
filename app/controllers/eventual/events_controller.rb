@@ -3,7 +3,10 @@ module Eventual
     prepend EventsPrepend
 
     def index
-      @events = Event.includes(logo_attachment: :blob).page(params[:page])
+      q_params = {}
+      q_params.merge! params.permit('name-like')
+
+      @events = Event.includes(logo_attachment: :blob).default_where(q_params).page(params[:page])
     end
 
     def summary
