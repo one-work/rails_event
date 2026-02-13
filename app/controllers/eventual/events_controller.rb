@@ -1,5 +1,6 @@
 module Eventual
   class EventsController < BaseController
+    prepend EventsPrepend
 
     def index
       @events = Event.includes(logo_attachment: :blob).page(params[:page])
