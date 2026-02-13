@@ -34,9 +34,8 @@ module Eventual
       if params[:area_id]
         @area = Area.find params[:area_id]
       else
-        area = QqMapHelper.ip request.remote_ip
-        full = area.dig('ad_info', 'city')
-        area = Area.find_by(full: full)
+        ip = Ship::Ip.find_or_create_by(ip_address: request.remote_ip)
+        area = ip.area
         @area = area || Area.find_by(full: '河北省') || Area.first
       end
     end
