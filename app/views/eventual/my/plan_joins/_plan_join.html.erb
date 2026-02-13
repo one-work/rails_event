@@ -1,4 +1,4 @@
-<%= form_with model: @order, url: { controller: 'trade/my/orders', action: 'create' }, data: { form_visible_value: 2 }, id: 'order_form', class: 'field is-grouped is-grouped-multiline' do |f| %>
+<%= form_with model: @order, url: { controller: 'trade/my/orders', action: 'create' }, data: { form_visible_value: 2 }, id: 'order_form', class: 'field is-grouped is-grouped-multiline p-3' do |f| %>
   <%= f.fields :items do |ef| %>
     <div class="control">
       <div class="tags has-addons is-medium">
@@ -10,7 +10,7 @@
           <span><%= ef.object.good.seat_no %></span>
           <span class="text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
         </div>
-        <span data-id="<%= ef.object.good.seat_no %>" data-action="click->seats#uncheck" class="tag is-delete"></span>
+        <span data-id="<%= ef.object.good.seat_no %>" data-action="click->form#uncheck" class="tag is-delete"></span>
       </div>
     </div>
   <% end %>
