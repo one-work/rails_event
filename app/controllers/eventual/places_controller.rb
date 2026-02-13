@@ -6,6 +6,9 @@ module Eventual
 
     def index
       q_params = {}
+      if @area.parent.name == '河北'
+        q_params.merge! area_id: @area.id
+      end
       q_params.merge! default_params
       q_params.merge! params.permit(:area_id, :place_taxon_id, 'name-like')
 
