@@ -35,8 +35,8 @@ module Eventual
         @area = Area.find params[:area_id]
       else
         ip = Ship::Ip.find_or_create_by(ip_address: request.remote_ip)
-        area = ip.area
-        @area = area || Area.find_by(full: '石家庄市') || Area.first
+        area = ip.area || ip.named_area
+        @area = area || Area.find_by(full: '石家庄市') || Area.published.first.children.first
       end
     end
 
