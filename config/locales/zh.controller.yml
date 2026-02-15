@@ -13,6 +13,9 @@ zh:
       apps:
         index:
           title: 应用
+      halls:
+        index:
+          title: 大厅
       time_lists:
         index:
           title: 时间表
