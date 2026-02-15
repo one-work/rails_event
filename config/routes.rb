@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       resources :places do
         resources :halls
         resources :seats
+        resources :plans, controller: 'place/plans'
       end
       resources :plans
       resources :plan_items do

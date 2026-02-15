@@ -9,17 +9,12 @@ module Eventual
       q_params.merge! default_params
 
       @plans = Plan.default_where(q_params)
-      @plan_items = PlanItem.default_where(q_params)
     end
 
     def calendar
       @time_list = TimeList.find params[:time_list_id]
       set_settings
       @events = @time_list.events(@settings[:defaultDate], @settings[:dayCount])
-    end
-
-    def new
-      @plan = Plan.new
     end
 
     def create
@@ -32,9 +27,6 @@ module Eventual
       end
     end
 
-    def show
-    end
-
     def show_calendar
       @time_list = TimeList.find params[:time_list_id]
       set_settings
@@ -43,26 +35,11 @@ module Eventual
       render :calendar
     end
 
-    def edit
-    end
-
-    def update
-      @plan.assign_attributes plan_params
-
-      unless @plan.save
-        render :edit, locals: { model: @plan }, status: :unprocessable_entity
-      end
-    end
-
     def xx
       dt = params[:index].to_s
       if dt
         @plan.toggle(dt, params[:time_item_id])
       end
-    end
-
-    def destroy
-      @plan.destroy
     end
 
     private
