@@ -1,6 +1,5 @@
 module Eventual
   class EventsController < BaseController
-    prepend EventsPrepend
 
     def index
       q_params = {}
