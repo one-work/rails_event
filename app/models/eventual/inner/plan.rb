@@ -16,8 +16,6 @@ module Eventual
       has_many :time_bookings, ->(o){ where(booked_type: o.plan_type) }, foreign_key: :booked_id, primary_key: :plan_id
       #has_many :plan_items, dependent: :destroy
 
-      default_scope -> { order(begin_on: :asc) }
-
       validates :begin_on, presence: true
 
       #after_initialize if: :new_record?
