@@ -4,6 +4,7 @@ module Eventual
 
     def create
       @order = current_user.orders.build
+      @order.expire_at = 10.minutes.since
       Array(params[:plan_join]).each do |pj|
         plan_join = @plan.plan_joins.find_or_initialize_by(seat_no: pj[:seat_no])
         plan_join.user = current_user
