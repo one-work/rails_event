@@ -19,7 +19,7 @@ module Eventual
       @plans = @event.plans.where(plan_on: Date.today.., plan_at: Time.current..).page(params[:page])
 
       @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-      @plans = @plans.includes(:place, :hall).where(q_params)
+      @plans = @plans.includes(:hall, place: :area).where(q_params)
     end
 
     def place
