@@ -17,7 +17,7 @@ module Eventual
     end
 
     def set_hall
-      @hall = Seat.find(params[:id])
+      @hall = Hall.find(params[:id])
     end
 
     def hall_params
