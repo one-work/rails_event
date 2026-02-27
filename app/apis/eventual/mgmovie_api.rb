@@ -1,10 +1,11 @@
-# frozen_string_literal: true
 module Eventual
   class MgmovieApi
     include CommonApi
 
+    def cities
+      r = post '6214598156852'
+    end
 
-    
     protected
     def with_access_token(tries: 2, params: {}, headers: {}, payload:, **)
       payload.merge!(
