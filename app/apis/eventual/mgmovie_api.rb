@@ -6,6 +6,10 @@ module Eventual
       r = post '6214598156852'
     end
 
+    def movies(type: 0)
+      post '621458c86a46f', type: type
+    end
+
     protected
     def with_access_token(tries: 2, params: {}, headers: {}, payload:, **)
       payload.merge!(
