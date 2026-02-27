@@ -1,9 +1,9 @@
 module Eventual
-  class PintotoApp < App
+  class MgmovieApp < App
 
     def api
       return @api if defined? @api
-      @api = PintotoApi.new(self)
+      @api = MgmovieApi.new(self)
     end
 
   end
