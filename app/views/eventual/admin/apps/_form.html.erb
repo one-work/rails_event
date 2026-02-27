@@ -1,5 +1,6 @@
 <%= f.select :type, options_for_select(Eventual::App.options_i18n(:type), f.object.type) %>
 <%= f.text_field :name %>
 <%= f.text_field :appid %>
+<%= f.text_field :agentid %>
 <%= f.text_field :secret %>
 <%= f.text_field :base_url %>
