@@ -27,5 +27,13 @@ module Eventual
       Digest::MD5.hexdigest("#{full}#{@app.secret}")
     end
 
+    def extra(body)
+      if body['success']
+        body['data']
+      else
+        body
+      end
+    end
+
   end
 end
