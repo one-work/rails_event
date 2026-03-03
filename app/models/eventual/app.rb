@@ -1,9 +1,7 @@
 module Eventual
   class App < ApplicationRecord
-
+    include Model::App
     attribute :extra, :json
-
-
 
     def sync_movies(now = Time.current)
       api.movies.each do |m|
