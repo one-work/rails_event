@@ -3,11 +3,11 @@ module Eventual
     before_action :set_place
 
     def index
-      @plans = @place.plans.page(params[:page])
+      @plans = @place.plans.includes(:event).order(id: :desc).page(params[:page])
     end
 
     def sync
-      @place.sync_movies
+      @place.sync_plans
     end
 
     private
