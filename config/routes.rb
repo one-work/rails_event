@@ -52,7 +52,7 @@ Rails.application.routes.draw do
         resources :seats
         resources :plans, controller: 'place/plans' do
           collection do
-            post :sync_events
+            post :sync
           end
         end
       end
