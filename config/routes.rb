@@ -50,7 +50,11 @@ Rails.application.routes.draw do
       resources :places do
         resources :halls
         resources :seats
-        resources :plans, controller: 'place/plans'
+        resources :plans, controller: 'place/plans' do
+          collection do
+            post :sync_events
+          end
+        end
       end
       resources :plans
       resources :plan_items do

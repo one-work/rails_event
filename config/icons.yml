@@ -4,6 +4,7 @@ light:
   - location-dot
   - pencil
   - qrcode
+  - rotate
   - square-user
   - trash
   - users-line
