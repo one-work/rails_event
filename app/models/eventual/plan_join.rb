@@ -4,6 +4,7 @@ module Eventual
     include Trade::Ext::Good
 
     attribute :seat_no, :string
+    attribute :res, :json
     belongs_to :seat, foreign_key: [:hall_id, :seat_no], primary_key: [:hall_id, :name]
 
     before_create :set_price
@@ -28,7 +29,7 @@ module Eventual
       api = (PintotoApp.default.take || PintotoApp.first).api
       return unless item.organ.auto_purchase
 
-      api.order_cheap(
+      r = api.order_cheap(
         plan.ref_ident,
         seat_no,
         phone: '18571856813',
@@ -37,12 +38,13 @@ module Eventual
         area: seat.area,
         netPrice: (price * 100).to_i
       )
+      self.update res: r
     end
 
     def order_create(item)
       api = (PintotoApp.default.take || PintotoApp.first).api
 
-      api.order_create(
+      r = api.order_create(
         plan.ref_ident,
         seat_no,
         seat_id: seat.ref_ident,
@@ -52,6 +54,7 @@ module Eventual
         area: seat.area,
         price: (price * 100).to_i
       )
+      self.update res: r
     end
 
   end
