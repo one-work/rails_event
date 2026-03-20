@@ -18,14 +18,14 @@ module Eventual
 
       @plans = @event.plans.where(plan_on: Date.today.., plan_at: Time.current..).page(params[:page])
 
-      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+      @plan_ons = @plans.distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
       @plans = @plans.includes(:hall, place: :area).where(q_params)
     end
 
     def place
       @place = Place.find params[:place_id]
       @plans = @event.plans.where(place_id: params[:place_id], plan_on: Date.today, plan_at: Time.current..).page(params[:page])
-      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+      @plan_ons = @plans.distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
 
       @plans = @plans.includes(:hall).order(plan_at: :asc)
     end
