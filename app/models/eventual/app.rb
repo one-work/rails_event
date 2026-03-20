@@ -37,7 +37,7 @@ module Eventual
           sub_area = area.self_and_descendants.find_by(name: c['regionName'])
 
           place = Place.find_or_initialize_by(ref_ident: c['cinemaId'])
-          place.area_id = sub_area.id || area.id
+          place.area = sub_area || area
           place.name = c['cinemaName']
           place.address = c['address']
           place.tel = c['phone']
