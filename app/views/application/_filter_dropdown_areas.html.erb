@@ -1,5 +1,5 @@
 <div class="flex mt-3">
-<% @area.self_and_ancestors.where(level: 1..).reverse_each do |area| %>
+<% @area.self_and_ancestors.where(level: 2..).reverse_each do |area| %>
   <div data-controller="bulma-dropdown" class="dropdown is-left mr-3">
     <div class="dropdown-trigger">
       <button data-action="bulma-dropdown#appear" class="button">
