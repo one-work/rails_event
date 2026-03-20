@@ -1,8 +1,8 @@
 module Eventual
   class PlacesController < BaseController
     before_action :set_place, only: [:show]
-    before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
+    before_action :set_areas, only: [:index]
 
     def index
       q_params = {}
@@ -26,8 +26,7 @@ module Eventual
     end
 
     def set_areas
-      area = Area.find_by(full: '河北省') || Area.first
-      @areas = area.children
+      @areas = @area.children
     end
 
     def set_area
@@ -36,7 +35,7 @@ module Eventual
       else
         ip = Ship::Ip.find_or_create_by(ip_address: request.remote_ip)
         area = ip.area || ip.named_area
-        @area = area || Area.find_by(full: '石家庄市')
+        @area = area || Area.first
       end
     end
 
