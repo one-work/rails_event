@@ -6,7 +6,7 @@ module Eventual
 
     def index
       q_params = {}
-      if @area.parent&.name == '河北'
+      if @area
         q_params.merge! area_id: @area.id
       end
       q_params.merge! default_params
