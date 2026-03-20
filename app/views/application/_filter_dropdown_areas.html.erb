@@ -1,17 +1,21 @@
+<div class="flex mt-3">
 <% @area.self_and_ancestors.reverse_each do |area| %>
-<div data-controller="bulma-dropdown" class="dropdown is-left my-3">
-  <div class="dropdown-trigger">
-    <button data-action="bulma-dropdown#appear" class="button">
-      <span><%= area.name %></span>
-      <%= svg_tag 'angle-down' %>
-    </button>
-  </div>
-  <div class="dropdown-menu">
-    <div class="dropdown-content">
-    <% area.children.each do |child| %>
-      <%= link_to child.name, filter_params(area_id: child.id), class: active_helper(area_id: child.id, active: 'dropdown-item is-active', item: 'dropdown-item') %>
-    <% end %>
+  <div data-controller="bulma-dropdown" class="dropdown is-left mr-3">
+    <div class="dropdown-trigger">
+      <button data-action="bulma-dropdown#appear" class="button">
+        <span><%= area.name %></span>
+        <%= svg_tag 'angle-down' if area.children.present? %>
+      </button>
     </div>
+    <% if area.children.present? %>
+    <div class="dropdown-menu">
+      <div class="dropdown-content">
+      <% area.children.each do |child| %>
+        <%= link_to child.name, filter_params(area_id: child.id), class: active_helper(area_id: child.id, active: 'dropdown-item is-active', item: 'dropdown-item') %>
+      <% end %>
+      </div>
+    </div>
+    <% end %>
   </div>
-</div>
 <% end %>
+</div>
