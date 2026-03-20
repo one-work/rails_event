@@ -45,7 +45,7 @@ module Eventual
     end
 
     def set_areas
-      @areas = area.children
+      @areas = @area.children
     end
 
   end
