@@ -6,6 +6,7 @@ module Eventual
     def sync_movies(now = Time.current)
       api.movies.each do |m|
         event = Event.find_or_initialize_by(ref_ident: m['filmId'])
+        event.organ = organ
         event.assign_detail(m, now)
       end
 
