@@ -2,12 +2,11 @@ module Eventual
   class PlacesController < BaseController
     before_action :set_place, only: [:show]
     before_action :set_area, only: [:index]
-    before_action :set_areas, only: [:index]
 
     def index
       q_params = {}
       if @area
-        q_params.merge! area_id: @area.id
+        q_params.merge! area_id: @area.self_and_descendant_ids
       end
       q_params.merge! default_params
       q_params.merge! params.permit(:area_id, :place_taxon_id, 'name-like')
@@ -23,10 +22,6 @@ module Eventual
 
     def place_params
       params.fetch(:place, {})
-    end
-
-    def set_areas
-      @areas = @area.children
     end
 
   end

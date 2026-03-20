@@ -3,17 +3,16 @@ module Eventual
     before_action :set_event
     before_action :set_plan, only: [:show]
     before_action :set_area, only: [:index]
-    before_action :set_areas, only: [:index]
 
     def index
       q_params = {
         plan_on: Date.today
       }
       q_params.merge! params.permit(:plan_on)
-      if params[:area_id]
-        q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
+      if @area
+        area_ids = @area.self_and_descendant_ids
+        q_params.merge! place_id: Place.where(area_id: area_ids).pluck(:id)
       end
-
       #q_params.merge! default_params
 
       @plans = @event.plans.where(plan_on: Date.today.., plan_at: Time.current..).page(params[:page])
@@ -42,10 +41,6 @@ module Eventual
 
     def set_plan
       @plan = @event.plans.find(params[:id])
-    end
-
-    def set_areas
-      @areas = @area.children
     end
 
   end

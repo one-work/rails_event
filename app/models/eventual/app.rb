@@ -34,8 +34,10 @@ module Eventual
     def sync_cinemas
       Ship::Area.where.not(pintoto_ident: nil).each do |area|
         api.cinemas(area.pintoto_ident).each do |c|
+          sub_area = area.self_and_descendants.find_by(name: c['regionName'])
+
           place = Place.find_or_initialize_by(ref_ident: c['cinemaId'])
-          place.area_id = area.id
+          place.area_id = sub_area.id || area.id
           place.name = c['cinemaName']
           place.address = c['address']
           place.tel = c['phone']
