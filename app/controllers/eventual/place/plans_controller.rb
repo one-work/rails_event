@@ -2,7 +2,6 @@ module Eventual
   class Place::PlansController < PlansController
     before_action :set_place
     before_action :set_plan, only: [:show]
-    before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
     before_action :set_events, only: [:event]
     before_action :prepare_plans, only: [:index]
@@ -14,10 +13,10 @@ module Eventual
         plan_on: Date.today
       }
       q_params.merge! params.permit(:plan_on)
-      if params[:area_id]
-        q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
+      if @area
+        area_ids = @area.self_and_descendant_ids
+        q_params.merge! place_id: Place.where(area_id: area_ids).pluck(:id)
       end
-
       #q_params.merge! default_params
 
       @plans = @place.plans.where(plan_on: Date.today.., plan_at: Time.current..).page(params[:page])
