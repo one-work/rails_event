@@ -10,7 +10,7 @@ module Eventual
       post '621458c86a46f', type: type
     end
 
-    def order_get(uuid)
+    def order(uuid)
       post '623829f7a2be4', order_number: uuid
     end
 
