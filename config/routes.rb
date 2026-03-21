@@ -91,6 +91,7 @@ Rails.application.routes.draw do
           match :edit_plan, via: [:get, :post]
           match :update_plan, via: [:get, :post]
         end
+        resources :plans, controller: 'event/plans'
         resources :event_participants do
           collection do
             post :check

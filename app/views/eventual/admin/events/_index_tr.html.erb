@@ -8,6 +8,11 @@
       position: 0
     },
     {
+      href: url_for(controller: 'event/plans', event_id: model.id),
+      icon: 'list',
+      title: t('.event.plans.index.title')
+    },
+    {
       href: url_for(controller: 'event_participants', event_id: model.id),
       title: t('.event_participants.index.title')
     },
