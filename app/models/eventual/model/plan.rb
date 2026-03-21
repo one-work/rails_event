@@ -29,7 +29,6 @@ module Eventual
 
       validates :plan_on, presence: true
 
-      default_scope -> { order(plan_on: :asc) }
       scope :valid, -> { default_where('plan_on-gte': Date.today) }
 
       #before_validation :sync_from_planned
