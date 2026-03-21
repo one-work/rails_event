@@ -1,9 +1,9 @@
-<div id="tr_<%= place.id %>" class="media">
-  <%= link_to({ action: 'place', place_id: place.id }, class: 'media-content') do %>
+<div id="tr_<%= place_plan.place.id %>" class="media">
+  <%= link_to({ action: 'place', place_id: place_plan.place_id }, class: 'media-content') do %>
     <%= yield %>
   <% end %>
   <div class="media-right">
-    <%= link_to({ action: 'place', place_id: place.id }, class: 'button is-small is-rounded is-warning') do %>
+    <%= link_to({ action: 'place', place_id: place_plan.place_id }, class: 'button is-small is-rounded is-warning') do %>
       <span>购票</span>
     <% end %>
   </div>

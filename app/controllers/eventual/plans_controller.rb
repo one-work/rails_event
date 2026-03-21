@@ -15,9 +15,10 @@ module Eventual
       end
       #q_params.merge! default_params
 
-      @plans = @event.plans.where(plan_on: Date.today.., plan_at: Time.current..)
-      @plan_ons = @plans.distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
-      @plans = @plans.includes(:hall, place: :area).where(q_params).page(params[:page])
+      @plan_ons = @event.plans.where(plan_on: Date.today.., plan_at: Time.current..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      #includes(:hall, place: :area)
+      place_ids = @event.plans.where(plan_at: Time.current..).where(q_params).select(:place_id, :plan_on).distinct.map(&:place_id)
+      @place_plans = PlacePlan.where(place_id: place_ids, event_id: @event.id, **q_params.slice(:plan_on)).includes(:plans).page(params[:page])
     end
 
     def place
