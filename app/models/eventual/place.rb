@@ -10,6 +10,7 @@ module Eventual
         event = Event.find_by(ref_ident: show['filmId'])
         unless event
           app.update missed_event: true
+          next
         end
 
         hall = halls.find_or_create_by(name: show['hallName'])
