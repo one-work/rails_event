@@ -21,8 +21,8 @@ module Eventual
         self.price = 100
       end
 
-      self.wallet_price = WalletGood.where(good_type: 'Eventual::PlanJoin').each_with_object({}) do |wg, h|
-        h.merge! wg.code => price * wg.ratio
+      self.wallet_price = WalletGood.where(good_type: self.base_class_name).each_with_object({}) do |wg, h|
+        h.merge! wg.wallet_code => price * wg.ratio
       end
     end
 
