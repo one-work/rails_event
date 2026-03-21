@@ -5,7 +5,7 @@ module Eventual
       q_params = {}
       q_params.merge! params.permit('name-like')
 
-      @events = Event.includes(logo_attachment: :blob).default_where(q_params).order(begin_on: :desc).page(params[:page])
+      @events = Event.with_attached_logo.default_where(q_params).order(begin_on: :desc).page(params[:page])
     end
 
     def summary
