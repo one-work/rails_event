@@ -5,13 +5,11 @@ module Eventual
 
     def sync_plans(now = Time.current)
       app = (PintotoApp.default.take || PintotoApp.first)
-      missed_event = false
 
       app.api.plans(ref_ident).each do |show|
         event = Event.find_by(ref_ident: show['filmId'])
         unless event
-          missed_event = true
-          next
+          app.update missed_event: true
         end
 
         hall = halls.find_or_create_by(name: show['hallName'])
@@ -35,9 +33,6 @@ module Eventual
       end
 
       plans.where(synced_at: ...now).delete_all
-      if missed_event
-        app.sync_movies_later
-      end
     end
 
   end

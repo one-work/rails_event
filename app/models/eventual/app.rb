@@ -1,6 +1,8 @@
 module Eventual
   class App < ApplicationRecord
     include Model::App
+
+    attribute :missed_event, :boolean, default: false
     attribute :extra, :json
 
     def sync_movies(now = Time.current)
