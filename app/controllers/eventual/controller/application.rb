@@ -1,5 +1,5 @@
 module Eventual
-  class Application
+  module Controller::Application
 
     private
     def set_area
