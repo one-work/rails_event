@@ -27,7 +27,6 @@ module Eventual
 
     def order_deliverable(item)
       api = (PintotoApp.default.take || PintotoApp.first).api
-      return unless item.organ.auto_purchase
 
       r = api.order_cheap(
         plan.ref_ident,
