@@ -19,6 +19,7 @@ module Eventual
       belongs_to :hall, optional: true
       belongs_to :event, optional: true
       belongs_to :event_item, optional: true
+      belongs_to :place_plan, foreign_key: [:event_id, :place_id, :plan_on], primary_key: [:event_id, :place_id, :plan_on], counter_cache: true, optional: true
 
       has_many :bookings, dependent: :destroy
       has_many :plan_attenders, dependent: :nullify
@@ -32,6 +33,11 @@ module Eventual
       scope :valid, -> { default_where('plan_on-gte': Date.today) }
 
       #before_validation :sync_from_planned
+      before_save :init_place_plan
+    end
+
+    def init_place_plan
+      place_plan || create_place_plan
     end
 
     def attenders
