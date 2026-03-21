@@ -10,6 +10,10 @@ module Eventual
       post '621458c86a46f', type: type
     end
 
+    def order_get(uuid)
+      post '623829f7a2be4', order_number: uuid
+    end
+
     protected
     def with_access_token(tries: 2, params: {}, headers: {}, payload:, **)
       payload.merge!(
