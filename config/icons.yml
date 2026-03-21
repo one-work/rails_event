@@ -6,5 +6,6 @@ light:
   - qrcode
   - rotate
   - square-user
+  - square-xmark
   - trash
   - users-line

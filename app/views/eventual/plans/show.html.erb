@@ -24,6 +24,10 @@
           <div data-col="<%= col %>" class="cell">
             <%= svg_tag 'square-user', class: 'icon' %>
           </div>
+        <% elsif seat && seat['price'] > @global_limit[:movie].to_d %> <!-- 票价高于的显示不可售 -->
+          <div data-col="<%= col %>" class="cell">
+            <%= svg_tag 'square-xmark', class: 'icon' %>
+          </div>
         <% else %>
           <div data-col="<%= col %>" class="cell">
             <%= check_box_tag '', disabled: true, class: 'checkbox xl', id: nil %>

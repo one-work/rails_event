@@ -39,7 +39,10 @@ module Eventual
 
     def sorted_seats
       (seats || {}).transform_values do |arr|
-        arr.each_with_object({}) { |i, h| h.merge! i['columnNo'] => i }
+        arr.each_with_object({}) do |i, h|
+          i['price'] = self.extra.dig(i['area'].to_s, 'price').to_i / 100.0
+          h.merge! i['columnNo'] => i
+        end
       end
     end
 
