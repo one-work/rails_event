@@ -9,6 +9,8 @@ module Eventual
       attribute :plan_participants_count, :integer, default: 0
       attribute :repeat_index, :string
       attribute :extra, :json
+      attribute :price_min, :decimal
+      attribute :price_max, :decimal
       attribute :ref_ident, :string, index: true
 
       belongs_to :planned, polymorphic: true, optional: true
@@ -32,11 +34,17 @@ module Eventual
       scope :valid, -> { default_where('plan_on-gte': Date.today) }
 
       #before_validation :sync_from_planned
+      before_validation :set_price_range, if: -> { extra_changed? }
       before_save :init_place_plan
     end
 
     def init_place_plan
       place_plan || create_place_plan
+    end
+
+    def set_price_range
+      self.price_min = extra.values.min_by { |i| i['price'].to_i }.fetch('price', 0).to_i / 100.0
+      self.price_max = extra.values.min_by { |i| i['price'].to_i }.fetch('price', 0).to_i / 100.0
     end
 
     def attenders
