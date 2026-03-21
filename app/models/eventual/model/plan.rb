@@ -43,8 +43,12 @@ module Eventual
     end
 
     def set_price_range
-      self.price_min = extra.values.min_by { |i| i['price'].to_i }.fetch('price', 0).to_i / 100.0
-      self.price_max = extra.values.min_by { |i| i['price'].to_i }.fetch('price', 0).to_i / 100.0
+      values = extra.values.map { |i| i['price'].to_i / 100.0 }
+
+      if values.present?
+        self.price_min = values.min
+        self.price_max = values.max
+      end
     end
 
     def attenders
