@@ -7,7 +7,11 @@
       <div class="cell text-grey"><%= row + 1 %></div>
       <% @plan.hall.cols.to_i.times do |col| %>
         <% seat = @plan.sorted_seats.dig((row + 1).to_s, (col + 1).to_s) %>
-        <% if seat && seat['status'] == 'N' %>
+        <% if seat && seat['price'] > @global_limit[:movie].to_d %> <!-- 票价高于的显示不可售 -->
+          <div data-col="<%= col %>" class="cell">
+            <%= svg_tag 'square-xmark', class: 'icon' %>
+          </div>
+        <% elsif seat && seat['status'] == 'N' %>
           <div data-controller="input" data-col="<%= col %>" data-seat-no="<%= seat['seatNo'] %>" class="cell">
             <%=
               check_box_tag(
@@ -23,10 +27,6 @@
         <% elsif seat && seat['status'] == 'LK' %>
           <div data-col="<%= col %>" class="cell">
             <%= svg_tag 'square-user', class: 'icon' %>
-          </div>
-        <% elsif seat && seat['price'] > @global_limit[:movie].to_d %> <!-- 票价高于的显示不可售 -->
-          <div data-col="<%= col %>" class="cell">
-            <%= svg_tag 'square-xmark', class: 'icon' %>
           </div>
         <% else %>
           <div data-col="<%= col %>" class="cell">
