@@ -20,9 +20,10 @@ module Eventual
       else
         self.price = 100
       end
-      self.wallet_price = {
-        movie: price
-      }
+
+      self.wallet_price = WalletGood.where(good_type: 'Eventual::PlanJoin').each_with_object({}) do |wg, h|
+        h.merge! wg.code => price * wg.ratio
+      end
     end
 
     def order_deliverable(item)
