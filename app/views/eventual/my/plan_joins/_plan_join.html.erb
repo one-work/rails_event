@@ -14,7 +14,7 @@
       <% ef.object.good.wallet_price.slice(*@cart.wallet_codes).each do |code, price| %>
       <div class="tags has-addons">
         <span class="tag"><%= code %></span>
-        <span class="text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
+        <span class="tag text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
       </div>
       <% end %>
     </div>
