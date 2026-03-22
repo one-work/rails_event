@@ -1,0 +1,6 @@
+<%= turbo_stream.replace 'page_loading' do %>
+  <% @plans.group_by(&:event).each do |event, plans| %>
+    <%= render partial: 'index_item', layout: 'index_item_actions', collection: @plans, locals: { event: event, plans: plans } %>
+  <% end %>
+  <%= render partial: 'page_loading', locals: { all: @plans } %>
+<% end %>
