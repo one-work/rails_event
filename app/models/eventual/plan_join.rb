@@ -38,7 +38,7 @@ module Eventual
         area: seat.area,
         netPrice: (price * 100).to_i
       )
-      self.update res: r
+      item.update purchase_res: r
     end
 
     def order_create(item)
@@ -54,7 +54,7 @@ module Eventual
         area: seat.area,
         price: (price * 100).to_i
       )
-      self.update res: r
+      self.update purchase_res: r
     end
 
   end
