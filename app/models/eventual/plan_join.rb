@@ -22,7 +22,11 @@ module Eventual
       end
 
       self.wallet_price = WalletGood.where(good_type: self.base_class_name).each_with_object({}) do |wg, h|
-        h.merge! wg.wallet_code => price * wg.ratio
+        if wg.wallet_template.unit == '次'
+          h.merge! wg.wallet_code => 1
+        else
+          h.merge! wg.wallet_code => price * wg.ratio
+        end
       end
     end
 
