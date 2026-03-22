@@ -8,10 +8,15 @@
         <%= ef.hidden_field :status, value: 'ordered' %>
         <div class="tag is-light">
           <span><%= ef.object.good.seat_no %></span>
-          <span class="text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
         </div>
         <span data-id="<%= ef.object.good.seat_no %>" data-action="click->form#uncheck" class="tag is-delete"></span>
       </div>
+      <% ef.object.good.wallet_price.slice(*@cart.wallet_codes).each do |code, price| %>
+      <div class="tags has-addons">
+        <span class="tag"><%= code %></span>
+        <span class="text-danger"><%= ef.object.good.price.to_money.format.html_safe %></span>
+      </div>
+      <% end %>
     </div>
   <% end %>
 <% end %>
