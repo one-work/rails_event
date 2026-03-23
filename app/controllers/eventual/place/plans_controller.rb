@@ -24,9 +24,16 @@ module Eventual
     end
 
     def event
+      q_params = {
+        plan_on: Date.today,
+        event_id: params[:event_id],
+        plan_at: 1.hour.since..
+      }
+      q_params.merge! params.permit(:plan_on)
+
       @event = Event.find params[:event_id]
       @plan_ons = @place.plans.where(event_id: params[:event_id], plan_on: Date.today, plan_at: 1.hour.since..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
-      @plans = @place.plans.includes(:hall).where(event_id: params[:event_id], plan_on: Date.today, plan_at: 1.hour.since..).order(plan_at: :asc)
+      @plans = @place.plans.includes(:hall).where(q_params).order(plan_at: :asc)
     end
 
     private
