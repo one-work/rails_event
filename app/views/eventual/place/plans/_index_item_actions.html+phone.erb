@@ -1,9 +1,9 @@
 <div id="tr_<%= event.id %>" class="media">
-  <%= link_to({ action: 'event', event_id: event.id, **params.slice(:plan_on) }, class: 'media-content') do %>
+  <%= link_to({ action: 'event', event_id: event.id, **request.GET.slice(:plan_on) }, class: 'media-content') do %>
     <%= yield %>
   <% end %>
   <div class="media-right">
-    <%= link_to({ action: 'event', event_id: event.id, **params.slice(:plan_on) }, class: 'button is-small is-rounded is-warning') do %>
+    <%= link_to({ action: 'event', event_id: event.id, **request.GET.slice(:plan_on) }, class: 'button is-small is-rounded is-warning') do %>
       <span>购票</span>
     <% end %>
   </div>
