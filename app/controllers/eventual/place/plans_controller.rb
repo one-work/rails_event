@@ -46,8 +46,8 @@ module Eventual
     end
 
     def set_events
-      Date.today || params[:plan_on]
-      @events = @place.plans.includes(:event).where(plan_on: Date.today).select(:event_id, :plan_on).distinct
+      plan_on = params[:plan_on] || Date.today
+      @events = @place.plans.includes(:event).where(plan_on: plan_on).select(:event_id, :plan_on).distinct
     end
 
     def prepare_plans
