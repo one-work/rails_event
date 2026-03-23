@@ -19,16 +19,14 @@ module Eventual
       end
       #q_params.merge! default_params
 
-      @plans = @place.plans.where(plan_on: Date.today.., plan_at: 1.hour.since..).page(params[:page])
-      @plan_ons = @plans.distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
-      @plans = @plans.includes(:event, :hall).where(q_params).order(plan_on: :asc)
+      @plan_ons = @place.plans.where(plan_on: Date.today..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      @plans = @place.plans.includes(:event, :hall).where(plan_at: 1.hour.since..).where(q_params).order(plan_on: :asc)
     end
 
     def event
       @event = Event.find params[:event_id]
-      @plans = @place.plans.where(event_id: params[:event_id], plan_on: Date.today, plan_at: 1.hour.since..).page(params[:page])
-      @plan_ons = @plans.distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
-      @plans = @plans.includes(:hall).order(plan_at: :asc)
+      @plan_ons = @place.plans.where(event_id: params[:event_id], plan_on: Date.today, plan_at: 1.hour.since..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      @plans = @place.plans.includes(:hall).where(event_id: params[:event_id], plan_on: Date.today, plan_at: 1.hour.since..).order(plan_at: :asc)
     end
 
     private
