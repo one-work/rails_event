@@ -17,7 +17,7 @@ module Eventual
 
       belongs_to :time_item, optional: true
       belongs_to :time_list, optional: true
-      belongs_to :place, optional: true
+      belongs_to :place, counter_cache: true, optional: true
       belongs_to :hall, optional: true
       belongs_to :event, optional: true
       belongs_to :event_item, optional: true
