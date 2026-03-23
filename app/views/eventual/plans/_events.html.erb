@@ -2,7 +2,7 @@
 <div class="fixed-grid">
   <div class="grid width-max-content" style="--bulma-grid-column-count: <%= @events.length %>">
   <% @events.each do |plan| %>
-    <%= link_to({ event_id: plan.event_id }, class: 'cell') do %>
+    <%= link_to({ event_id: plan.event_id, **request.GET.slice(:plan_on) }, class: 'cell') do %>
       <div class="card">
         <div class="card-image">
           <figure class="image" style="height: 128px">
