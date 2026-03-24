@@ -8,7 +8,11 @@ module Eventual
       else
         ip = Ship::Ip.find_or_create_by(ip_address: request.remote_ip)
         area = ip.area || ip.named_area
-        @area = area || Area.first
+        @area = area
+      end
+
+      unless area.published
+        @area = Area.published.first
       end
     end
 
