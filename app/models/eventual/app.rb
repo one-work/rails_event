@@ -44,6 +44,7 @@ module Eventual
           place.name = c['cinemaName']
           place.address = c['address']
           place.tel = c['phone']
+          place.organ_id = organ_id
           place.save
         end
       end
