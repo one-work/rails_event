@@ -11,7 +11,7 @@ module Eventual
         @area = area
       end
 
-      unless area.published
+      unless area&.published
         @area = Area.published.where(level: 2).first
       end
     end
