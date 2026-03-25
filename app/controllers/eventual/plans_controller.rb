@@ -18,7 +18,7 @@ module Eventual
       @plan_ons = @event.plans.where(plan_on: Date.today..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
       place_ids = @event.plans.where(plan_at: 1.hour.since..).where(q_params).select(:place_id, :plan_on).distinct.map(&:place_id)
       if params['name-like']
-        place_ids = Place.where(id: place_ids).default_where(params.slice('name-like')).pluck(:id)
+        place_ids = Place.where(id: place_ids).default_where(params.permit('name-like')).pluck(:id)
       end
       @place_plans = PlacePlan.includes(:plans, place: :area).where(place_id: place_ids, event_id: @event.id).default_where(q_params.slice('plan_on')).page(params[:page])
     end
