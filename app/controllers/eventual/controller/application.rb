@@ -12,7 +12,7 @@ module Eventual
       end
 
       unless area.published
-        @area = Area.published.first
+        @area = Area.published.where(level: 2).first
       end
     end
 
