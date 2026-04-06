@@ -1,9 +1,10 @@
 module Eventual
   class My::PlanJoinsController < My::BaseController
     before_action :set_plan
+    before_action :set_cart, only: [:create]
 
     def create
-      @order = current_user.orders.build
+      @order = @cart.orders.build
       @order.expire_at = 10.minutes.since
       Array(params[:plan_join]).each do |pj|
         plan_join = @plan.plan_joins.find_or_initialize_by(seat_no: pj[:seat_no])

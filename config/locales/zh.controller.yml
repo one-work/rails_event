@@ -25,6 +25,11 @@ zh:
       places:
         index:
           title: 空间
+      place/plans:
+        index:
+          title: 场次
+        sync:
+          title: 同步场次
       seats:
         index:
           title: 桌子

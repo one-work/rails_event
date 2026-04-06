@@ -9,16 +9,19 @@ module Eventual
       attribute :plan_participants_count, :integer, default: 0
       attribute :repeat_index, :string
       attribute :extra, :json
+      attribute :price_min, :decimal
+      attribute :price_max, :decimal
       attribute :ref_ident, :string, index: true
 
       belongs_to :planned, polymorphic: true, optional: true
 
       belongs_to :time_item, optional: true
       belongs_to :time_list, optional: true
-      belongs_to :place, optional: true
+      belongs_to :place, counter_cache: true, optional: true
       belongs_to :hall, optional: true
       belongs_to :event, optional: true
       belongs_to :event_item, optional: true
+      belongs_to :place_plan, foreign_key: [:event_id, :place_id, :plan_on], primary_key: [:event_id, :place_id, :plan_on], counter_cache: true, optional: true
 
       has_many :bookings, dependent: :destroy
       has_many :plan_attenders, dependent: :nullify
@@ -28,10 +31,24 @@ module Eventual
 
       validates :plan_on, presence: true
 
-      default_scope -> { order(plan_on: :asc) }
       scope :valid, -> { default_where('plan_on-gte': Date.today) }
 
       #before_validation :sync_from_planned
+      before_validation :set_price_range, if: -> { extra_changed? }
+      before_save :init_place_plan
+    end
+
+    def init_place_plan
+      place_plan || create_place_plan
+    end
+
+    def set_price_range
+      values = extra.values.map { |i| i['price'].to_i / 100.0 }
+
+      if values.present?
+        self.price_min = values.min
+        self.price_max = values.max
+      end
     end
 
     def attenders

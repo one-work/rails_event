@@ -2,9 +2,6 @@
 <td><%= model.area.full if model.area %></td>
 <td><%= model.place_taxon&.name %></td>
 <td>
-  <span class="tag" style="background-color: <%= model.color %>"><%= model.color %></span>
-</td>
-<td>
   <%= link_to({ controller: 'halls', place_id: model.id }, aria: { label: t('.halls.index.title') }) do %>
     <%= svg_tag 'airplay' %>
     <span><%= model.halls_count %></span>

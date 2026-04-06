@@ -50,7 +50,11 @@ Rails.application.routes.draw do
       resources :places do
         resources :halls
         resources :seats
-        resources :plans, controller: 'place/plans'
+        resources :plans, controller: 'place/plans' do
+          collection do
+            post :sync
+          end
+        end
       end
       resources :plans
       resources :plan_items do
@@ -87,6 +91,7 @@ Rails.application.routes.draw do
           match :edit_plan, via: [:get, :post]
           match :update_plan, via: [:get, :post]
         end
+        resources :plans, controller: 'event/plans'
         resources :event_participants do
           collection do
             post :check

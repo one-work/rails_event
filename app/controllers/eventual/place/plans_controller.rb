@@ -2,7 +2,6 @@ module Eventual
   class Place::PlansController < PlansController
     before_action :set_place
     before_action :set_plan, only: [:show]
-    before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
     before_action :set_events, only: [:event]
     before_action :prepare_plans, only: [:index]
@@ -14,24 +13,27 @@ module Eventual
         plan_on: Date.today
       }
       q_params.merge! params.permit(:plan_on)
-      if params[:area_id]
-        q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
+      if @area
+        area_ids = @area.self_and_descendant_ids
+        q_params.merge! place_id: Place.where(area_id: area_ids).pluck(:id)
       end
-
       #q_params.merge! default_params
 
-      @plans = @place.plans.where(plan_on: Date.today.., plan_at: Time.current..).page(params[:page])
-
-      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-      @plans = @plans.includes(:event, :hall).where(q_params).order(plan_on: :asc)
+      @plan_ons = @place.plans.where(plan_on: Date.today..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      @plans = @place.plans.includes(:event, :hall).where(plan_at: 1.hour.since..).where(q_params).order(plan_on: :asc)
     end
 
     def event
-      @event = Event.find params[:event_id]
-      @plans = @place.plans.where(event_id: params[:event_id], plan_on: Date.today, plan_at: Time.current..).page(params[:page])
-      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
+      q_params = {
+        plan_on: Date.today,
+        event_id: params[:event_id],
+        plan_at: 1.hour.since..
+      }
+      q_params.merge! params.permit(:plan_on)
 
-      @plans = @plans.includes(:hall).order(plan_at: :asc)
+      @event = Event.find params[:event_id]
+      @plan_ons = @place.plans.where(event_id: params[:event_id], plan_on: Date.today, plan_at: 1.hour.since..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      @plans = @place.plans.includes(:hall).where(q_params).order(plan_at: :asc)
     end
 
     private
@@ -44,8 +46,8 @@ module Eventual
     end
 
     def set_events
-      Date.today || params[:plan_on]
-      @events = @place.plans.includes(:event).where(plan_on: Date.today).select(:event_id, :plan_on).distinct
+      plan_on = params[:plan_on] || Date.today
+      @events = @place.plans.includes(:event).where(plan_on: plan_on).select(:event_id, :plan_on).distinct
     end
 
     def prepare_plans

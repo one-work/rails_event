@@ -1,0 +1,10 @@
+<%=
+  tr_tag(
+    model,
+    {
+      href: url_for(controller: 'place/plans', place_id: model.id),
+      icon: 'list-timeline',
+      title: t('.place.plans.title')
+    }
+  ) { yield }
+%>

@@ -1,7 +1,7 @@
-<% if @plans.blank? %>
+<% if @place_plans.blank? %>
   <p class="text-centered text-grey">当日没有安排场次，请换一部电影</p>
 <% else %>
-<div id="tbody" class="box is-padding-less">
-  <%= yield %>
-</div>
+  <%= render layout: 'application/index_list' do %>
+    <%= yield %>
+  <% end %>
 <% end %>

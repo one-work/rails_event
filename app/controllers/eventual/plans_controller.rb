@@ -2,32 +2,31 @@ module Eventual
   class PlansController < BaseController
     before_action :set_event
     before_action :set_plan, only: [:show]
-    before_action :set_areas, only: [:index]
     before_action :set_area, only: [:index]
 
     def index
       q_params = {
-        plan_on: Date.today
+        'plan_on' => Date.today
       }
-      q_params.merge! params.permit(:plan_on)
-      if params[:area_id]
-        q_params.merge! place_id: Place.where(area_id: params[:area_id]).pluck(:id)
+      q_params.merge! params.permit(:plan_on, 'place.name-like')
+      if @area
+        area_ids = @area.self_and_descendant_ids
+        q_params.merge! place_id: Place.where(area_id: area_ids).pluck(:id)
       end
-
       #q_params.merge! default_params
 
-      @plans = @event.plans.where(plan_on: Date.today.., plan_at: Time.current..).page(params[:page])
-
-      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-      @plans = @plans.includes(:hall, place: :area).where(q_params)
+      @plan_ons = @event.plans.where(plan_on: Date.today..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      place_ids = @event.plans.where(plan_at: 1.hour.since..).where(q_params).select(:place_id, :plan_on).distinct.map(&:place_id)
+      if params['name-like']
+        place_ids = Place.where(id: place_ids).default_where(params.permit('name-like')).pluck(:id)
+      end
+      @place_plans = PlacePlan.includes(:plans, place: :area).where(place_id: place_ids, event_id: @event.id).default_where(q_params.slice('plan_on')).page(params[:page])
     end
 
     def place
       @place = Place.find params[:place_id]
-      @plans = @event.plans.where(place_id: params[:place_id], plan_on: Date.today, plan_at: Time.current..).page(params[:page])
-      @plan_ons = @plans.distinct(:plan_on).select(:plan_on)
-
-      @plans = @plans.includes(:hall).order(plan_at: :asc)
+      @plan_ons = @event.plans.where(place_id: params[:place_id], plan_on: Date.today, plan_at: 1.hour.since..).distinct(:plan_on).order(:plan_on).select(:plan_on).limit(4)
+      @plans = @event.plans.where(place_id: params[:place_id], plan_on: Date.today, plan_at: 1.hour.since..).includes(:hall).order(plan_at: :asc).page(params[:page])
     end
 
     def show
@@ -44,19 +43,6 @@ module Eventual
 
     def set_plan
       @plan = @event.plans.find(params[:id])
-    end
-
-    def set_areas
-      area = Area.published.first
-      @areas = area.children
-    end
-
-    def set_area
-      if params[:area_id]
-        @area = Area.find params[:area_id]
-      else
-        @area = Area.published.first
-      end
     end
 
   end
