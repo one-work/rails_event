@@ -1,8 +1,8 @@
-<tr>
-  <td class="text-right"><%= Eventual::TimeList.human_attribute_name(:name) %></td>
-  <td><%= @time_list.name %></td>
-</tr>
-<tr>
-  <td class="has-text-right"><%= Eventual::TimeList.human_attribute_name(:code) %></td>
-  <td><%= @time_list.code %></td>
-</tr>
+<div>
+  <dt><%= Eventual::TimeList.human_attribute_name(:name) %></dt>
+  <dd><%= @time_list.name %></dd>
+</div>
+<div>
+  <dt><%= Eventual::TimeList.human_attribute_name(:code) %></dt>
+  <dd><%= @time_list.code %></dd>
+</div>

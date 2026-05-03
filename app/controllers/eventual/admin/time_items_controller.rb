@@ -1,7 +1,8 @@
 module Eventual
   class Admin::TimeItemsController < Admin::BaseController
     before_action :set_time_list, except: [:default]
-    before_action :set_time_item, only: [:show, :edit, :update, :destroy]
+    before_action :set_time_item, only: [:show, :edit, :update, :destroy, :actions]
+    before_action :set_new_time_item, only: [:new, :create]
 
     def index
       @time_items = @time_list.time_items.page(params[:page])
@@ -31,36 +32,6 @@ module Eventual
       end
     end
 
-    def new
-      @time_item = @time_list.time_items.build
-    end
-
-    def create
-      @time_item = @time_list.time_items.build(time_item_params)
-
-      unless @time_item.save
-        render :new, locals: { model: @time_item }, status: :unprocessable_entity
-      end
-    end
-
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @time_item.assign_attributes(time_item_params)
-
-      unless @time_item.save
-        render :edit, locals: { model: @time_item }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @time_item.destroy
-    end
-
     private
     def set_time_list
       @time_list = TimeList.find params[:time_list_id]
@@ -68,6 +39,10 @@ module Eventual
 
     def set_time_item
       @time_item = TimeItem.find(params[:id])
+    end
+
+    def set_new_time_item
+      @time_item = @time_list.time_items.build(time_item_params)
     end
 
     def time_item_params

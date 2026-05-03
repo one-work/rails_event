@@ -1,6 +1,6 @@
 module Eventual
   class Admin::TimeListsController < Admin::BaseController
-    before_action :set_time_list, only: [:show, :edit, :update, :destroy]
+    before_action :set_time_list, only: [:show, :edit, :update, :destroy, :actions]
 
     def index
       q_params = {}
@@ -14,36 +14,6 @@ module Eventual
       end
 
       @time_lists = TimeList.default_where(q_params).order(id: :asc).page(params[:page])
-    end
-
-    def new
-      @time_list = TimeList.new
-    end
-
-    def create
-      @time_list = TimeList.new(time_list_params)
-
-      unless @time_list.save
-        render :new, locals: { model: @time_list }, status: :unprocessable_entity
-      end
-    end
-
-    def show
-    end
-
-    def edit
-    end
-
-    def update
-      @time_list.assign_attributes(time_list_params)
-
-      unless @time_list.save
-        render :edit, locals: { model: @time_list }, status: :unprocessable_entity
-      end
-    end
-
-    def destroy
-      @time_list.destroy
     end
 
     private
