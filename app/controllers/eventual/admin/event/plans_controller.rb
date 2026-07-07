@@ -18,11 +18,11 @@ module Eventual
       @event = Event.find params[:event_id]
     end
 
-    def set_filter_columns
-      @filter_columns = set_filter_i18n(
+    def filter_columns
+      {
         'place.name-like' => { type: 'search', default: true },
         'plan_on' => { type: 'date', default: true }
-      )
+      }
     end
 
   end
