@@ -7,6 +7,6 @@
     <span class="text-grey"><%= @plan.event.duration_mins %>分钟</span>
   </p>
 </div>
-<div class="buttons as-bottom">
+<div id="buttons" class="buttons as-bottom">
   <%= submit_tag '选座购票', disabled: true, id: 'order_form_submit', form: 'order_form', class: 'button is-primary is-medium' %>
 </div>
