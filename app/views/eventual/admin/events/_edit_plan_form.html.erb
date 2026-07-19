@@ -3,7 +3,7 @@
     <p class="modal-card-title"><%= t('.title') %></p>
     <button type="button" data-action="modal#close" class="delete"></button>
   </header>
-  <section class="modal-card-body">
+  <section id="modal-card-body" class="modal-card-body">
     <%= render 'error_messages', target: f.object if f.object.errors.present? %>
     <div data-controller="input" data-input-url-value="<%= url_for(action: 'update_plan') %>" class="field is-horizontal">
       <%= f.select :repeat_type, options_for_select(Eventual::Event.options_i18n(:repeat_type), f.object.repeat_type), {}, data: { action: 'input#link' } %>
