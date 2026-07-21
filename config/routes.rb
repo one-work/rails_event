@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.app.routes.draw do
   namespace :eventual, defaults: { business: 'eventual' } do
     controller :time do
       get 'repeat_form', action: 'repeat_form'
