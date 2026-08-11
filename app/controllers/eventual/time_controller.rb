@@ -1,6 +1,6 @@
 module Eventual
   class TimeController < BaseController
-    skip_before_action :verify_authenticity_token, only: [:repeat_form]
+    skip_forgery_protection only: [:repeat_form]
 
     def repeat_form
       @booking = params[:booking_type].classify.constantize.new
