@@ -10,7 +10,7 @@ module Eventual
     before_create :set_price
 
     def good_name
-      "#{plan.event.name}-#{seat_no}-#{plan.plan_at.to_fs(:short_cn)}"
+      "#{plan.event.name}-#{seat_no}-#{plan.plan_at.to_fs(:cn_short)}"
     end
 
     def set_price
