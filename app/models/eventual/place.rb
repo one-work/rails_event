@@ -1,7 +1,7 @@
 module Eventual
   class Place < ApplicationRecord
     include Model::Place
-    include Detail::Ext::Listing
+    include Detail::Ext::Listing if defined? RailsDetail
 
     def sync_plans(now = Time.current)
       app = (PintotoApp.default.take || PintotoApp.first)
