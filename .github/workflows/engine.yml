@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
+<<<<<<< HEAD
         uses: actions/checkout@v5
+=======
+        uses: actions/checkout@v7
+>>>>>>> 1684e954e8e44703bf27bd2a403911af372a0d49
         with:
           repository: ${{ github.repository_owner }}/engine
           ref: main
